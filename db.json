@@ -2,234 +2,234 @@
   "clients": [
     {
       "id": 1,
-      "nombre": "Facundo",
-      "apellido": "Pérez",
+      "firstName": "Facundo",
+      "lastName": "Pérez",
       "email": "facundo@example.com",
-      "telefono": "123-456-7890",
-      "fechaIngreso": "2024-10-01",
-      "fechaSalida": "2024-10-05",
-      "habitacionId": 101
+      "phone": "123-456-7890",
+      "checkInDate": "2024-10-01",
+      "checkOutDate": "2024-10-05",
+      "roomId": 101
     },
     {
       "id": 2,
-      "nombre": "María",
-      "apellido": "Gómez",
+      "firstName": "María",
+      "lastName": "Gómez",
       "email": "maria@example.com",
-      "telefono": "987-654-3210",
-      "fechaIngreso": "2024-10-10",
-      "fechaSalida": "2024-10-15",
-      "habitacionId": 102
+      "phone": "987-654-3210",
+      "checkInDate": "2024-10-10",
+      "checkOutDate": "2024-10-15",
+      "roomId": 102
     },
     {
       "id": 3,
-      "nombre": "Carlos",
-      "apellido": "López",
+      "firstName": "Carlos",
+      "lastName": "López",
       "email": "carlos@example.com",
-      "telefono": "456-789-0123",
-      "fechaIngreso": "2024-11-01",
-      "fechaSalida": "2024-11-05",
-      "habitacionId": 103
+      "phone": "456-789-0123",
+      "checkInDate": "2024-11-01",
+      "checkOutDate": "2024-11-05",
+      "roomId": 103
     },
     {
       "id": 4,
-      "nombre": "Laura",
-      "apellido": "Martínez",
+      "firstName": "Laura",
+      "lastName": "Martínez",
       "email": "laura@example.com",
-      "telefono": "321-654-0987",
-      "fechaIngreso": "2024-11-10",
-      "fechaSalida": "2024-11-15",
-      "habitacionId": 104
+      "phone": "321-654-0987",
+      "checkInDate": "2024-11-10",
+      "checkOutDate": "2024-11-15",
+      "roomId": 104
     },
     {
       "id": 5,
-      "nombre": "Ricardo",
-      "apellido": "Díaz",
+      "firstName": "Ricardo",
+      "lastName": "Díaz",
       "email": "ricardo@example.com",
-      "telefono": "654-123-7890",
-      "fechaIngreso": "2024-12-01",
-      "fechaSalida": "2024-12-10",
-      "habitacionId": 105
+      "phone": "654-123-7890",
+      "checkInDate": "2024-12-01",
+      "checkOutDate": "2024-12-10",
+      "roomId": 105
     }
   ],
   "rooms": [
     {
       "id": 101,
-      "tipo": "Doble",
-      "detalles": {
-        "capacidad": 2,
-        "precioPorNoche": 120,
-        "disponible": false
+      "type": "Double",
+      "details": {
+        "capacity": 2,
+        "pricePerNight": 120,
+        "available": false
       }
     },
     {
       "id": 102,
-      "tipo": "Suite",
-      "detalles": {
-        "capacidad": 4,
-        "precioPorNoche": 250,
-        "disponible": false
+      "type": "Suite",
+      "details": {
+        "capacity": 4,
+        "pricePerNight": 250,
+        "available": false
       }
     },
     {
       "id": 103,
-      "tipo": "Individual",
-      "detalles": {
-        "capacidad": 1,
-        "precioPorNoche": 80,
-        "disponible": false
+      "type": "Single",
+      "details": {
+        "capacity": 1,
+        "pricePerNight": 80,
+        "available": false
       }
     },
     {
       "id": 104,
-      "tipo": "Doble",
-      "detalles": {
-        "capacidad": 2,
-        "precioPorNoche": 120,
-        "disponible": false
+      "type": "Double",
+      "details": {
+        "capacity": 2,
+        "pricePerNight": 120,
+        "available": false
       }
     },
     {
       "id": 105,
-      "tipo": "Suite",
-      "detalles": {
-        "capacidad": 4,
-        "precioPorNoche": 250,
-        "disponible": false
+      "type": "Suite",
+      "details": {
+        "capacity": 4,
+        "pricePerNight": 250,
+        "available": false
       }
     },
     {
       "id": 106,
-      "tipo": "Individual",
-      "detalles": {
-        "capacidad": 1,
-        "precioPorNoche": 80,
-        "disponible": true
+      "type": "Single",
+      "details": {
+        "capacity": 1,
+        "pricePerNight": 80,
+        "available": true
       }
     },
     {
       "id": 107,
-      "tipo": "Doble",
-      "detalles": {
-        "capacidad": 2,
-        "precioPorNoche": 120,
-        "disponible": true
+      "type": "Double",
+      "details": {
+        "capacity": 2,
+        "pricePerNight": 120,
+        "available": true
       }
     },
     {
       "id": 108,
-      "tipo": "Suite",
-      "detalles": {
-        "capacidad": 4,
-        "precioPorNoche": 250,
-        "disponible": true
+      "type": "Suite",
+      "details": {
+        "capacity": 4,
+        "pricePerNight": 250,
+        "available": true
       }
     },
     {
       "id": 109,
-      "tipo": "Individual",
-      "detalles": {
-        "capacidad": 1,
-        "precioPorNoche": 80,
-        "disponible": true
+      "type": "Single",
+      "details": {
+        "capacity": 1,
+        "pricePerNight": 80,
+        "available": true
       }
     },
     {
       "id": 110,
-      "tipo": "Doble",
-      "detalles": {
-        "capacidad": 2,
-        "precioPorNoche": 120,
-        "disponible": true
+      "type": "Double",
+      "details": {
+        "capacity": 2,
+        "pricePerNight": 120,
+        "available": true
       }
     },
     {
       "id": 111,
-      "tipo": "Suite",
-      "detalles": {
-        "capacidad": 4,
-        "precioPorNoche": 250,
-        "disponible": true
+      "type": "Suite",
+      "details": {
+        "capacity": 4,
+        "pricePerNight": 250,
+        "available": true
       }
     },
     {
       "id": 112,
-      "tipo": "Individual",
-      "detalles": {
-        "capacidad": 1,
-        "precioPorNoche": 80,
-        "disponible": true
+      "type": "Single",
+      "details": {
+        "capacity": 1,
+        "pricePerNight": 80,
+        "available": true
       }
     },
     {
       "id": 113,
-      "tipo": "Doble",
-      "detalles": {
-        "capacidad": 2,
-        "precioPorNoche": 120,
-        "disponible": true
+      "type": "Double",
+      "details": {
+        "capacity": 2,
+        "pricePerNight": 120,
+        "available": true
       }
     },
     {
       "id": 114,
-      "tipo": "Suite",
-      "detalles": {
-        "capacidad": 4,
-        "precioPorNoche": 250,
-        "disponible": true
+      "type": "Suite",
+      "details": {
+        "capacity": 4,
+        "pricePerNight": 250,
+        "available": true
       }
     },
     {
       "id": 115,
-      "tipo": "Individual",
-      "detalles": {
-        "capacidad": 1,
-        "precioPorNoche": 80,
-        "disponible": true
+      "type": "Single",
+      "details": {
+        "capacity": 1,
+        "pricePerNight": 80,
+        "available": true
       }
     },
     {
       "id": 116,
-      "tipo": "Doble",
-      "detalles": {
-        "capacidad": 2,
-        "precioPorNoche": 120,
-        "disponible": true
+      "type": "Double",
+      "details": {
+        "capacity": 2,
+        "pricePerNight": 120,
+        "available": true
       }
     },
     {
       "id": 117,
-      "tipo": "Suite",
-      "detalles": {
-        "capacidad": 4,
-        "precioPorNoche": 250,
-        "disponible": true
+      "type": "Suite",
+      "details": {
+        "capacity": 4,
+        "pricePerNight": 250,
+        "available": true
       }
     },
     {
       "id": 118,
-      "tipo": "Individual",
-      "detalles": {
-        "capacidad": 1,
-        "precioPorNoche": 80,
-        "disponible": true
+      "type": "Single",
+      "details": {
+        "capacity": 1,
+        "pricePerNight": 80,
+        "available": true
       }
     },
     {
       "id": 119,
-      "tipo": "Doble",
-      "detalles": {
-        "capacidad": 2,
-        "precioPorNoche": 120,
-        "disponible": true
+      "type": "Double",
+      "details": {
+        "capacity": 2,
+        "pricePerNight": 120,
+        "available": true
       }
     },
     {
       "id": 120,
-      "tipo": "Suite",
-      "detalles": {
-        "capacidad": 4,
-        "precioPorNoche": 250,
-        "disponible": true
+      "type": "Suite",
+      "details": {
+        "capacity": 4,
+        "pricePerNight": 250,
+        "available": true
       }
     }
   ],
