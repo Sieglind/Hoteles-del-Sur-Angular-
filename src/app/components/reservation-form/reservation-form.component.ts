@@ -41,4 +41,8 @@ export class ReservationFormComponent implements OnInit {
       console.log('Form is invalid');
     }
   }
+
+  selectRoom(roomId: number): void {
+    this.reservationForm.patchValue({ roomId });
+  }
 }
