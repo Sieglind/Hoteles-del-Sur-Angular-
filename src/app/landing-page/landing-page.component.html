@@ -1,9 +1,4 @@
-<app-header></app-header>
-<app-hero (toggleForm)="toggleReservationForm()"></app-hero>
-
 <section *ngIf="!showReservationForm">
   <app-services></app-services>
 </section>
-
 <app-reservation-form *ngIf="showReservationForm"></app-reservation-form>
-<app-footer></app-footer>
