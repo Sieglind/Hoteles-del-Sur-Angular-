@@ -1,12 +1,12 @@
 <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()" class="reservation-form">
   <mat-form-field appearance="fill">
-    <mat-label>Fecha de entrada</mat-label>
+    <mat-label>Fecha Check-In</mat-label>
     <input matInput [matDatepicker]="checkInPicker" formControlName="checkInDate" required>
     <mat-datepicker-toggle matSuffix [for]="checkInPicker"></mat-datepicker-toggle>
     <mat-datepicker #checkInPicker></mat-datepicker>
   </mat-form-field>
   <mat-form-field appearance="fill">
-    <mat-label>Fecha de salida</mat-label>
+    <mat-label>Fecha Check-Out</mat-label>
     <input matInput [matDatepicker]="checkOutPicker" formControlName="checkOutDate" required>
     <mat-datepicker-toggle matSuffix [for]="checkOutPicker"></mat-datepicker-toggle>
     <mat-datepicker #checkOutPicker></mat-datepicker>
