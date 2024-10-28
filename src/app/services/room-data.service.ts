@@ -7,13 +7,9 @@ import { Room } from '../models/room.model';
   providedIn: 'root'
 })
 export class RoomDataService {
-  private apiUrl = 'http://localhost:3000/rooms'; // Asegúrate de que la URL coincida con la de tu backend
+  private apiUrl = 'http://localhost:3000/rooms'; 
 
   constructor(private http: HttpClient) {}
-
-  getRoomAvailability(): Observable<Room[]> {
-    return this.http.get<Room[]>(`${this.apiUrl}`);
-  }
 
   createRoom(room: Room): Observable<Room> {
     return this.http.post<Room>(`${this.apiUrl}`, room);
@@ -24,14 +20,14 @@ export class RoomDataService {
   }
 
   getRoomById(id: number): Observable<Room> {
-    return this.http.get<Room>(`${this.apiUrl}/${id}`);
+    return this.http.get<Room>(`${this.apiUrl}?id=${id}`);
   }
 
   updateRoom(id: number, room: Room): Observable<Room> {
-    return this.http.put<Room>(`${this.apiUrl}/${id}`, room);
+    return this.http.put<Room>(`${this.apiUrl}?id=${id}`, room);
   }
 
   deleteRoom(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}?id=${id}`);
   }
 }
