@@ -5,13 +5,15 @@ import { ReservationFormComponent } from './components/reservation-form/reservat
 import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {HeroComponent} from './components/hero/hero.component';
+import { MyReservationsComponent } from './components/my-reservations/my-reservations.component';
 
 const routes: Routes = [
-  { path: '', component: HeaderComponent , outlet: 'nav' },
-  { path: '', component: HeroComponent , outlet: 'header' },
-  { path: '', component: LandingPageComponent , outlet: 'main' },
-  { path: '', component: FooterComponent , outlet: 'footer' },
-  { path: 'reservation', component: ReservationFormComponent }
+  { path: '', component: HeaderComponent , outlet: 'nav', pathMatch: 'full' },
+  { path: '', component: HeroComponent , outlet: 'header', pathMatch: 'full' },
+  { path: '', component: LandingPageComponent , outlet: 'main', pathMatch: 'full' },
+  { path: '', component: FooterComponent , outlet: 'footer', pathMatch: 'full' },
+  { path: 'reservation', component: ReservationFormComponent,outlet:'main', pathMatch: 'full' },
+  { path: 'my-reservations', component: MyReservationsComponent, outlet: 'main', pathMatch: 'full'}
 ];
 
 @NgModule({

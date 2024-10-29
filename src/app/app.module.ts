@@ -21,6 +21,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ReservationFormComponent } from './components/reservation-form/reservation-form.component';
 import { RoomsAvailabilityComponent } from './components/rooms-availability/rooms-availability.component';
 import { RoomAvailabilityService } from './services/room-availability.service';
+import { MyReservationsComponent } from './components/my-reservations/my-reservations.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { RoomAvailabilityService } from './services/room-availability.service';
     FooterComponent,
     LandingPageComponent,
     ReservationFormComponent,
-    RoomsAvailabilityComponent
+    RoomsAvailabilityComponent,
+    MyReservationsComponent
   ],
   imports: [
     BrowserModule,
