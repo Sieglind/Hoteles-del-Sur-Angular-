@@ -2,6 +2,8 @@
   <div class="container">
     <h1 class="display-4">Bienvenidos a Hoteles del Sur</h1><br>
     <p class="lead">Una experiencia única y memorable</p><br>
-    <button class="btn btn-light btn-lg" (click)="toggleReservationForm()">Reservar ahora</button>
+    <div *ngIf="currentUrlIsHome()">
+      <button class="btn btn-light btn-lg" (click)="toggleReservationForm()">Reservar ahora</button>
+    </div>
   </div>
 </section>
