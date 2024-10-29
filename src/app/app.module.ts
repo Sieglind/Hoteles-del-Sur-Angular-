@@ -22,6 +22,7 @@ import { ReservationFormComponent } from './components/reservation-form/reservat
 import { RoomsAvailabilityComponent } from './components/rooms-availability/rooms-availability.component';
 import { RoomAvailabilityService } from './services/room-availability.service';
 import { MyReservationsComponent } from './components/my-reservations/my-reservations.component';
+import { ReservationService } from './services/reservation.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { MyReservationsComponent } from './components/my-reservations/my-reserva
     MatButtonModule,
     MatSelectModule
   ],
-  providers: [RoomAvailabilityService],
+  providers: [RoomAvailabilityService,ReservationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

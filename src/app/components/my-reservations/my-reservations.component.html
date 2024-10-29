@@ -1,16 +1,20 @@
-<div *ngIf="reservations.length > 0">
-    <h2>Lista de Reservas</h2>
-    <ul>
-      <li *ngFor="let reservation of reservations">
-        Nombre: {{ reservation.nombre }} {{ reservation.apellido }}<br>
-        Email: {{ reservation.email }}<br>
-        Teléfono: {{ reservation.telefono }}<br>
-        Fecha de Ingreso: {{ reservation.fechaIngreso }}<br>
-        Fecha de Salida: {{ reservation.fechaSalida }}<br>
-        Habitación: {{ reservation.habitacionId }}<br><br>
-      </li>
-    </ul>
+<div class="reservations-section">
+  <h2>Lista de Reservas</h2>
+  <div *ngIf="reservations.length > 0" class="reservations-list">
+    <div *ngFor="let reservation of reservations" class="reservation-card">
+      <p><strong>ID:</strong> {{ reservation.id }}</p>
+      <p><strong>Check-In:</strong> {{ reservation.checkInDate | date }}</p>
+      <p><strong>Check-Out:</strong> {{ reservation.checkOutDate | date }}</p>
+      <p><strong>Huéspedes:</strong> {{ reservation.guests }}</p>
+      <p><strong>Habitación:</strong> {{ reservation.roomId }}</p>
+      <div class="button-group">
+        <button mat-raised-button class="btn-modify">Modificar</button><br>
+        <button mat-raised-button class="btn-cancel">Cancelar</button>
+        
+      </div>
+    </div>
   </div>
   <div *ngIf="reservations.length === 0">
     <p>No hay reservas disponibles.</p>
   </div>
+</div>
