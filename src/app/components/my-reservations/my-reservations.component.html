@@ -1,5 +1,5 @@
 <div class="reservations-section">
-  <h2>Lista de Reservas</h2>
+  <h2 class="reservations-title">Lista de Reservas</h2>
   <div *ngIf="reservations.length > 0" class="reservations-list">
     <div *ngFor="let reservation of reservations" class="reservation-card">
       <p><strong>ID:</strong> {{ reservation.id }}</p>
@@ -10,7 +10,6 @@
       <div class="button-group">
         <button mat-raised-button class="btn-modify">Modificar</button><br>
         <button mat-raised-button class="btn-cancel">Cancelar</button>
-        
       </div>
     </div>
   </div>

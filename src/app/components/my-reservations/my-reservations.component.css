@@ -1,56 +1,64 @@
 .reservations-section {
-    margin: 20px auto;
-    width: 80%;
-  }
-  
-  .reservations-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .reservation-card {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; 
-    position: relative;
-  }
-  
-  .reservation-card p {
-    margin: 5px 0;
-  }
-  
-  .button-group {
-    display: flex;
-    flex-direction: column; 
-    position: absolute;
-    right: 20px; 
-    top: 20px; 
-  }
-  
-  button.btn-cancel {
-    background-color: #781515; 
-    color: #fff;
-    padding: 5px 10px;
-    font-size: 0.875rem; 
-    margin-bottom: 10px; 
-  }
-  
-  button.btn-modify {
-    background-color: #113d6c; 
-    color: #fff;
-    padding: 5px 10px;
-    font-size: 0.875rem; 
-  }
-  
-  button.btn-cancel:hover, button.btn-modify:hover {
-    opacity: 0.8; 
-  }
+  margin: 20px auto;
+  width: 80%;
+}
 
-  .reservation-card strong {
-    font-weight: bold;
-  }
+.reservations-title {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: left; 
+}
+
+.reservations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.reservation-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.reservation-card p {
+  margin: 5px 0;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+button.btn-cancel {
+  background-color: #ff0000;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 0.875rem;
+  margin-bottom: 10px;
+}
+
+button.btn-modify {
+  background-color: #007bff;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 0.875rem;
+}
+
+button.btn-cancel:hover, button.btn-modify:hover {
+  opacity: 0.8;
+}
+
+.reservation-card strong {
+  font-weight: bold;
+}
