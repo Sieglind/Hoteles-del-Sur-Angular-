@@ -8,10 +8,10 @@ import { HeroComponent } from './components/hero/hero.component';
 import { MyReservationsComponent } from './components/my-reservations/my-reservations.component';
 
 const routes: Routes = [
-  { path: '', component: HeaderComponent, outlet: 'nav', pathMatch: 'full' },
-  { path: '', component: HeroComponent, outlet: 'header', pathMatch: 'full' },
+  { path: '', component: HeaderComponent, outlet: 'nav'},
+  { path: '', component: HeroComponent, outlet: 'header' },
   { path: '', component: LandingPageComponent, outlet: 'main', pathMatch: 'full' },
-  { path: '', component: FooterComponent, outlet: 'footer', pathMatch: 'full' },
+  { path: '', component: FooterComponent, outlet: 'footer' },
   { path: 'reservation', component: ReservationFormComponent, outlet: 'main' },
   { path: 'my-reservations', component: MyReservationsComponent, outlet: 'main' }
 ];
