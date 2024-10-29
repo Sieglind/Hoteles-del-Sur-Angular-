@@ -1,4 +1,5 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
+import {EventBusService} from '../../services/event-bus.service';
 
 @Component({
   selector: 'app-hero',
@@ -6,9 +7,9 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./hero.component.css']
 })
 export class HeroComponent {
-  @Output() toggleForm = new EventEmitter<void>();
+  constructor(private eventBus: EventBusService) {}
 
   toggleReservationForm() {
-    this.toggleForm.emit();
+    this.eventBus.emitToggleForm();
   }
 }

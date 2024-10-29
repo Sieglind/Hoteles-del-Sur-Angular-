@@ -1,4 +1,3 @@
-<section *ngIf="!showReservationForm">
-  <app-services></app-services>
-</section>
-<app-reservation-form *ngIf="showReservationForm"></app-reservation-form>
+<div *ngIf="showReservationForm; then reservationForm else appServices"></div>
+<ng-template #reservationForm ><app-reservation-form></app-reservation-form></ng-template>
+<ng-template #appServices ><app-services></app-services></ng-template>

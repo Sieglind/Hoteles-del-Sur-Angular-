@@ -22,9 +22,9 @@
     <div class="rooms-grid">
       <div *ngFor="let room of availableRooms" class="room-card">
         <div class="room-details">
-          <p>Tipo: {{ room.tipo }}</p>
-          <p>Capacidad: {{ room.detalles.capacidad }}</p>
-          <p>Precio por noche: ${{ room.detalles.precioPorNoche }}</p>
+          <p>Tipo: {{ room.type }}</p>
+          <p>Capacidad: {{ room.details.capacity }}</p>
+          <p>Precio por noche: ${{ room.details.pricePerNight }}</p>
           <button mat-raised-button (click)="selectRoom(room.id)">Seleccionar</button>
         </div>
       </div>
