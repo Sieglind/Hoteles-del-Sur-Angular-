@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Room } from '../models/room.model';
 
 @Injectable({
@@ -29,5 +29,11 @@ export class RoomDataService {
 
   deleteRoom(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}?id=${id}`);
+  }
+
+  getAvailableRooms(): Observable<Room[]> {
+    return this.http.get<Room[]>(this.apiUrl).pipe(
+      map((rooms: Room[]) => rooms.filter(room => room.details.available)) 
+    );
   }
 }
