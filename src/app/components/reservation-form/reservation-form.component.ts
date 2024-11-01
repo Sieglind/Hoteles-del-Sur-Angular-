@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RoomAvailabilityService } from '../../services/room-availability.service';
 import {Room} from '../../models/room.model';
-import {RoomDataService} from '../../services/room-data.service';
 import {ReservationService} from '../../services/reservation.service';
 import {AvailabilityService} from '../../services/availability.service';
 import {Reservation} from '../../models/reservation.model';
