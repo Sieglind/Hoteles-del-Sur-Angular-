@@ -1,42 +1,46 @@
-import { Injectable } from "@angular/core";
-import { RoomDataService } from "./room-data.service";
-import { ReservationDataService } from "./reservation-data.service";
-import { Room } from "../models/room.model";
-import { forkJoin, map, Observable, of } from "rxjs";
-import { Reservation } from "../models/reservation.model";
+import {Injectable} from "@angular/core";
+import {RoomDataService} from "./room-data.service";
+import {ReservationDataService} from "./reservation-data.service";
+import {Room} from "../models/room.model";
+import {Reservation} from '../models/reservation.model';
 
 @Injectable({
-    providedIn:'root'
+  providedIn: 'root'
 })
 
-export class availabilityService{
+export class AvailabilityService {
 
-    constructor (private roomDataService: RoomDataService, private reservationDataService : ReservationDataService){}
+  constructor(private roomDataService: RoomDataService, private reservationDataService: ReservationDataService) {
+  }
 
-    getAvailability(checkInDate: Date, checkOutDate: Date): Observable<Room[]>{
-        
-        const today = new Date();
+  async getAvailableRooms(reservation: Reservation): Promise<Room[]> {
+    let today: Date = new Date();
+    today.setHours(0, 0, 0, 0);
 
-        if(new Date(checkInDate) < new Date(today)){
-            throw new Error('La fechag del check-in no puede ser anterior al dia de hoy.')
-        }
-
-        if(new Date(checkOutDate) < new Date(checkInDate)){
-            throw new Error('La fecha de check-out no puede ser anterior a la de check-in')
-        }
-        
-        return forkJoin([this.roomDataService.getAvailableRooms(),this.reservationDataService.getReservations()]).pipe(
-            map(([rooms,reservations])=>this.filterAvailableRooms(rooms,reservations,checkInDate,checkOutDate)));
-        
+    if ((reservation.checkInDate < today) || reservation.checkOutDate < reservation.checkInDate) {
+      throw new Error("Las fechas de checkIn / checkOutDate son invalidas");
     }
-    filterAvailableRooms(rooms: Room[], reservations: Reservation[],checkInDate: Date, checkOutDate: Date): Room[]{
-            return rooms.filter(room => {
-                return !reservations.some(reservations =>
-                    reservations.roomId === room.id.toString() && (
-                        (new Date(reservations.checkInDate) <= new Date(checkOutDate) && new Date(reservations.checkInDate) >= new Date(checkInDate)) ||
-                        (new Date(reservations.checkOutDate) <= new Date(checkOutDate) && new Date(reservations.checkOutDate)>= new Date(checkInDate))   
-                    )                     
-                );
-            });
-    }
+
+
+    const foundReservations = await this.reservationDataService.getReservations();
+
+    let reservationRoomIds: string[] = [];
+
+    if (foundReservations) foundReservations
+      .filter(fr => {
+        return fr.checkOutDate && reservation.checkInDate <= new Date(fr.checkOutDate)
+      })
+      .filter(fr => fr.checkInDate && reservation.checkOutDate >= new Date(fr.checkInDate))
+      .forEach(fr => {
+        if (fr.roomId) reservationRoomIds.push(fr.roomId)
+      });
+
+    console.log(reservationRoomIds);
+
+    const foundRooms = await this.roomDataService.getRooms();
+    return foundRooms ? foundRooms
+      .filter(fr => fr.details.available)
+      .filter(fr => !reservationRoomIds.includes(fr.id))
+      .filter(fr => fr.details.capacity >= reservation.guests) : [];
+  }
 }

@@ -7,12 +7,14 @@ import { Reservation } from '../models/reservation.model';
   providedIn: 'root'
 })
 export class ReservationService {
+
   private apiUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 
-  createReservation(reservationData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/reservations`, reservationData);
+  createReservation(reservation: Reservation): Observable<Reservation> {
+    console.log(reservation);
+    return this.http.post<Reservation>(`${this.apiUrl}/reservations`, reservation);
   }
 
   getReservations(): Observable<any[]> {

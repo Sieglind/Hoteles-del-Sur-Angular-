@@ -1,22 +1,23 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
-import { Room } from '../models/room.model';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {map, Observable} from 'rxjs';
+import {Room} from '../models/room.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoomDataService {
-  private apiUrl = 'http://localhost:3000/rooms'; 
+  private apiUrl = 'http://localhost:3000/rooms';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   createRoom(room: Room): Observable<Room> {
     return this.http.post<Room>(`${this.apiUrl}`, room);
   }
 
-  getRooms(): Observable<Room[]> {
-    return this.http.get<Room[]>(`${this.apiUrl}`);
+  getRooms(): Promise<Room[] | undefined> {
+    return this.http.get<Room[]>(`${this.apiUrl}`).toPromise();
   }
 
   getRoomById(id: number): Observable<Room> {
@@ -29,11 +30,5 @@ export class RoomDataService {
 
   deleteRoom(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}?id=${id}`);
-  }
-
-  getAvailableRooms(): Observable<Room[]> {
-    return this.http.get<Room[]>(this.apiUrl).pipe(
-      map((rooms: Room[]) => rooms.filter(room => room.details.available)) 
-    );
   }
 }

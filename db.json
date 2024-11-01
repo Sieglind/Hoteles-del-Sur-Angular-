@@ -225,60 +225,11 @@
   ],
   "reservations": [
     {
-      "id": "c536",
-      "checkInDate": "2024-10-30T03:00:00.000Z",
-      "checkOutDate": "2024-10-31T03:00:00.000Z",
-      "guests": 2,
-      "roomId": 107
-    },
-    {
-      "id": "895b",
-      "checkInDate": "2024-10-30T03:00:00.000Z",
-      "checkOutDate": "2024-10-31T03:00:00.000Z",
-      "guests": 2,
-      "roomId": 107
-    },
-    {
-      "id": "c1cb",
-      "checkInDate": "2024-10-30T03:00:00.000Z",
-      "checkOutDate": "2024-10-31T03:00:00.000Z",
-      "guests": 2,
-      "roomId": 107
-    },
-    {
-      "id": "1f41",
-      "checkInDate": "2024-10-30T03:00:00.000Z",
-      "checkOutDate": "2024-10-31T03:00:00.000Z",
-      "guests": 2,
-      "roomId": 107
-    },
-    {
-      "id": "03f1",
-      "checkInDate": "2024-10-30T03:00:00.000Z",
-      "checkOutDate": "2024-10-31T03:00:00.000Z",
-      "guests": 2,
-      "roomId": 107
-    },
-    {
-      "id": "a261",
-      "checkInDate": "2024-10-30T03:00:00.000Z",
-      "checkOutDate": "2024-10-31T03:00:00.000Z",
-      "guests": 2,
-      "roomId": 107
-    },
-    {
-      "id": "63b3",
-      "checkInDate": "2024-10-30T03:00:00.000Z",
-      "checkOutDate": "2024-10-31T03:00:00.000Z",
-      "guests": 2,
-      "roomId": 107
-    },
-    {
-      "id": "2dd8",
-      "checkInDate": "2024-10-30T03:00:00.000Z",
-      "checkOutDate": "2024-10-31T03:00:00.000Z",
-      "guests": 2,
-      "roomId": 107
+      "id": "8aeb",
+      "checkInDate": "2024-11-01T03:00:00.000Z",
+      "checkOutDate": "2024-11-02T03:00:00.000Z",
+      "guests": 4,
+      "roomId": 120
     }
   ]
 }

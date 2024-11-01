@@ -1,12 +1,12 @@
 <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()" class="reservation-form">
   <mat-form-field appearance="fill">
-    <mat-label>Fecha Check-In</mat-label>
+    <mat-label>Check-In</mat-label>
     <input matInput [matDatepicker]="checkInPicker" formControlName="checkInDate" required>
     <mat-datepicker-toggle matSuffix [for]="checkInPicker"></mat-datepicker-toggle>
     <mat-datepicker #checkInPicker></mat-datepicker>
   </mat-form-field>
   <mat-form-field appearance="fill">
-    <mat-label>Fecha Check-Out</mat-label>
+    <mat-label>Check-Out</mat-label>
     <input matInput [matDatepicker]="checkOutPicker" formControlName="checkOutDate" required>
     <mat-datepicker-toggle matSuffix [for]="checkOutPicker"></mat-datepicker-toggle>
     <mat-datepicker #checkOutPicker></mat-datepicker>
@@ -18,7 +18,8 @@
   <button mat-raised-button type="button" (click)="onCheckAvailability()">Verificar disponibilidad</button>
 
   <div *ngIf="availableRooms.length > 0" class="rooms-section">
-    <br><h2 class="rooms-title">Seleccionar habitación</h2><br>
+    <br>
+    <h2 class="rooms-title">Seleccionar habitación</h2><br>
     <div class="rooms-grid">
       <div *ngFor="let room of availableRooms" class="room-card">
         <div class="room-details">
@@ -30,9 +31,11 @@
       </div>
     </div>
   </div>
-<div>
-  <div class="confirm-btn-wrapper">
-    <button mat-raised-button type="submit" class="confirm-btn" [disabled]="!reservationForm.valid">Confirmar Reserva</button>
+  <div>
+    <div class="confirm-btn-wrapper">
+      <button mat-raised-button type="submit" class="confirm-btn" [disabled]="!reservationForm.valid">
+        Confirmar Reserva
+      </button>
+    </div>
   </div>
-</div>
 </form>
