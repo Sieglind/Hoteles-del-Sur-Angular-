@@ -17,10 +17,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { ServicesComponent } from './components/services/services.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { LandingPageComponent } from './landing-page/landing-page.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { ReservationFormComponent } from './components/reservation-form/reservation-form.component';
-import { RoomsAvailabilityComponent } from './components/rooms-availability/rooms-availability.component';
-import { RoomAvailabilityService } from './services/room-availability.service';
 import { MyReservationsComponent } from './components/my-reservations/my-reservations.component';
 import { ReservationService } from './services/reservation.service';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -37,7 +35,6 @@ import {LoginComponent} from './components/login/login.component';
     FooterComponent,
     LandingPageComponent,
     ReservationFormComponent,
-    RoomsAvailabilityComponent,
     MyReservationsComponent,
     ConfirmationDialogComponent,
     MyReservationsComponent,
@@ -59,7 +56,7 @@ import {LoginComponent} from './components/login/login.component';
     MatSelectModule,
     FormsModule
   ],
-  providers: [RoomAvailabilityService,ReservationService, provideAnimationsAsync()],
+  providers: [ReservationService, provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
