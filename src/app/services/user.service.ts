@@ -1,12 +1,15 @@
 import {Injectable} from '@angular/core';
 import {UserDataService} from './user-data.service';
 import {Router} from '@angular/router';
+import { Observable } from 'rxjs';
+import { User } from '../models/user.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService { 
+
   constructor(private userDataService: UserDataService, private router: Router) {
   }
 
@@ -26,6 +29,24 @@ export class UserService {
         console.error("User not found or other error:", error);
       }
     );
+  }
+
+  register(userData: User): void {
+    let email : string = '';
+    if(userData.email){
+      email = userData.email;
+    }else{
+      console.error('Error interno'); 
+    } 
+    this.userDataService.getUserByEmail(email).subscribe(
+      users => {
+        if(users.length != 0 ){
+          throw console.error('Email ya existente');  
+        }else{
+          this.userDataService.createUser(userData).subscribe();
+        }
+      }
+    )
   }
 
   userIsLoggedIn(): boolean {

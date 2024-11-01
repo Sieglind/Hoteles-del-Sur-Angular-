@@ -4,7 +4,7 @@
       <a class="navbar-brand" href="#">Hoteles del Sur ★★★</a>
       <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav me-auto">
-          <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/">Inicio</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Servicios</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
         </ul>
@@ -12,14 +12,14 @@
         <ng-template #userOptions>
           <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
-            <li class="nav-item"><a class="nav-link" [routerLink]="['reservations']" >My Reservations</a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['reservations']">My Reservations</a></li>
             <li class="nav-item"><a class="nav-link" (click)="logout()">Logout</a></li>
           </ul>
         </ng-template>
         <ng-template #authOptions>
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="#">Register</a></li>
-            <li class="nav-item"><a class="nav-link" [routerLink]="['login']" >Login</a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['register']">Registrar</a></li> <!-- Cambia esto -->
+            <li class="nav-item"><a class="nav-link" [routerLink]="['login']">Login</a></li>
           </ul>
         </ng-template>
       </div>
