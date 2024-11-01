@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {EventBusService} from '../../services/event-bus.service';
 import {Router} from '@angular/router';
+import {UserService} from '../../services/user.service';
 
 
 @Component({
@@ -9,13 +10,18 @@ import {Router} from '@angular/router';
   styleUrls: ['./hero.component.css']
 })
 export class HeroComponent {
-  constructor(private eventBus: EventBusService,private router: Router) {}
+  constructor(private eventBus: EventBusService, private userService: UserService, private router: Router) {
+  }
 
   toggleReservationForm() {
-    this.eventBus.emitToggleForm();
+    if (this.userService.userIsLoggedIn()) {
+      this.eventBus.emitToggleForm()
+    } else {
+      this.router.navigateByUrl('login');
+    }
   }
 
   currentUrlIsHome(): boolean {
-    return this.router.url ==  '/home';
+    return this.router.url == '/home';
   }
 }

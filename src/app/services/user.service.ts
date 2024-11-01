@@ -15,7 +15,7 @@ export class UserService {
       user => {
         if (user && user[0].password === password) {
           user[0].password = '';
-          this.router.navigateByUrl('home').then(()=>{
+          this.router.navigateByUrl('home').then(() => {
             sessionStorage.setItem('user', JSON.stringify(user[0]));
           });
         } else {
@@ -28,7 +28,11 @@ export class UserService {
     );
   }
 
-  performLogout(){
+  userIsLoggedIn(): boolean {
+    return sessionStorage.getItem('user') !== null;
+  }
+
+  performLogout() {
     sessionStorage.removeItem('user');
     this.router.navigateByUrl('home');
   }
