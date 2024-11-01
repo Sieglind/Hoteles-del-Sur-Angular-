@@ -7,6 +7,7 @@
       <p><strong>Check-Out:</strong> {{ reservation.checkOutDate | date }}</p>
       <p><strong>Huéspedes:</strong> {{ reservation.guests }}</p>
       <p><strong>Habitación:</strong> {{ reservation.roomId }}</p>
+      <p><strong>Cliente:</strong> {{ reservation.userId }}</p>
       <div class="button-group">
         <button mat-raised-button class="btn-cancel" (click)="openConfirmDialog(reservation.id)">Cancelar</button>
       </div>
