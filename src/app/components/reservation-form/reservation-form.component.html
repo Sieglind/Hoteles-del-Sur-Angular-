@@ -26,7 +26,7 @@
           <p>Tipo: {{ room.type }}</p>
           <p>Capacidad: {{ room.details.capacity }}</p>
           <p>Precio por noche: ${{ room.details.pricePerNight }}</p>
-          <button mat-raised-button (click)="selectRoom(room.id)">Seleccionar</button>
+          <button mat-raised-button type="button" (click)="selectRoom(room.id)">Seleccionar</button>
         </div>
       </div>
     </div>
