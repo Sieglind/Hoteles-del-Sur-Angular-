@@ -1,41 +1,59 @@
-<form [formGroup]="reservationForm" (ngSubmit)="onSubmit()" class="reservation-form">
-  <mat-form-field appearance="fill">
-    <mat-label>Check-In</mat-label>
-    <input matInput [matDatepicker]="checkInPicker" formControlName="checkInDate" required>
-    <mat-datepicker-toggle matSuffix [for]="checkInPicker"></mat-datepicker-toggle>
-    <mat-datepicker #checkInPicker></mat-datepicker>
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Check-Out</mat-label>
-    <input matInput [matDatepicker]="checkOutPicker" formControlName="checkOutDate" required>
-    <mat-datepicker-toggle matSuffix [for]="checkOutPicker"></mat-datepicker-toggle>
-    <mat-datepicker #checkOutPicker></mat-datepicker>
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Número de huéspedes</mat-label>
-    <input matInput type="number" formControlName="guests" required min="1">
-  </mat-form-field>
-  <button mat-raised-button type="button" (click)="onCheckAvailability()">Verificar disponibilidad</button>
-
-  <div *ngIf="availableRooms.length > 0" class="rooms-section">
-    <br>
-    <h2 class="rooms-title">Seleccionar habitación</h2><br>
-    <div class="rooms-grid">
-      <div *ngFor="let room of availableRooms" class="room-card">
-        <div class="room-details">
-          <p>Tipo: {{ room.type }}</p>
-          <p>Capacidad: {{ room.details.capacity }}</p>
-          <p>Precio por noche: ${{ room.details.pricePerNight }}</p>
-          <button mat-raised-button type="button" (click)="selectRoom(room.id)">Seleccionar</button>
+<div class="reservation-container">
+  <h2>Reserva</h2>
+  <form (ngSubmit)="onSubmit()" [formGroup]="reservationForm" novalidate class="reservation-form">
+    <div class="availability-section">
+      <div class="form-group">
+        <label for="checkInDate">Check-In</label>
+        <input type="date" id="checkInDate" formControlName="checkInDate" required class="form-control" />
+        <div *ngIf="reservationForm.get('checkInDate')?.invalid && reservationForm.get('checkInDate')?.touched" class="error">
+          La fecha de check-in es obligatoria.
         </div>
       </div>
+
+      <div class="form-group">
+        <label for="checkOutDate">Check-Out</label>
+        <input type="date" id="checkOutDate" formControlName="checkOutDate" required class="form-control" />
+        <div *ngIf="reservationForm.get('checkOutDate')?.invalid && reservationForm.get('checkOutDate')?.touched" class="error">
+          La fecha de check-out es obligatoria.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="guests">Número de huéspedes</label>
+        <input type="number" id="guests" formControlName="guests" required min="1" class="form-control" />
+        <div *ngIf="reservationForm.get('guests')?.invalid && reservationForm.get('guests')?.touched" class="error">
+          Debe ingresar al menos 1 huésped.
+        </div>
+      </div>
+
+      <button type="button" (click)="onCheckAvailability()" class="btn btn-secondary">Verificar disponibilidad</button>
     </div>
-  </div>
-  <div>
-    <div class="confirm-btn-wrapper">
-      <button mat-raised-button type="submit" class="confirm-btn" [disabled]="!reservationForm.valid">
-        Confirmar Reserva
-      </button>
+
+    <div *ngIf="availableRooms.length > 0" class="rooms-section">
+      <br>
+      <h2 class="rooms-title">Seleccionar habitación</h2>
+      <div class="rooms-grid">
+        <div *ngFor="let room of availableRooms" class="room-card">
+          <div class="room-details">
+            <p>Tipo: {{ room.type }}</p>
+            <p>Capacidad: {{ room.details.capacity }}</p>
+            <p>Precio por noche: ${{ room.details.pricePerNight }}</p>
+            <button type="button"
+                    (click)="selectRoom(room.id)"
+                    [ngClass]="{'btn-success': reservation?.roomId === room.id, 'btn-secondary': reservation?.roomId !== room.id}"
+                    class="btn">
+              Seleccionar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="confirm-btn-wrapper">
+        <button type="submit" class="btn btn-primary confirm-btn" [disabled]="!reservationForm.valid">
+          Confirmar Reserva
+        </button>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>
+
