@@ -11,8 +11,8 @@ export class UserDataService {
 
   private apiUrl = 'http://localhost:3000/users';
 
-  createUser() : Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}`, {});
+  createUser(user : User) : Observable<User> {
+    return this.http.post<User>(`${this.apiUrl}`, {user});
   }
 
   getUsers() : Observable<User[]> {
@@ -30,4 +30,5 @@ export class UserDataService {
   deleteUser(id: number): Observable<User> {
     return this.http.delete<User>(`${this.apiUrl}/${id}`);
   }
+
 }
