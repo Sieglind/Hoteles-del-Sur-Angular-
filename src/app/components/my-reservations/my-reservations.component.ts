@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReservationService } from '../../services/reservation.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-my-reservations',
@@ -11,12 +12,15 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 export class MyReservationsComponent implements OnInit {
   reservations: any[] = [];
 
-  constructor(private reservationService: ReservationService, public dialog: MatDialog) {}
+  constructor(
+    private reservationService: ReservationService,
+    public dialog: MatDialog,
+    private router: Router,
+  ) {}
 
-  ngOnInit(): void {
-    this.reservationService.getReservations().subscribe(data => {
-      this.reservations = data;
-    });
+  async ngOnInit(): Promise<void> {
+    const reservations = await this.reservationService.getUserReservations()
+    if (reservations) this.reservations = reservations;
   }
 
   openConfirmDialog(reservationId: string): void {
@@ -34,8 +38,6 @@ export class MyReservationsComponent implements OnInit {
   }
 
   cancelReservation(reservationId: string): void {
-    this.reservationService.deleteReservation(reservationId).subscribe(() => {
-      this.reservations = this.reservations.filter(res => res.id !== reservationId);
-    });
+    this.reservationService.deleteReservation(reservationId);
   }
 }

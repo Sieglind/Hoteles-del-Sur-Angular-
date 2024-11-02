@@ -1,14 +1,13 @@
 import {Injectable} from '@angular/core';
 import {UserDataService} from './user-data.service';
 import {Router} from '@angular/router';
-import { Observable } from 'rxjs';
-import { User } from '../models/user.model';
+import {User} from '../models/user.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService { 
+export class UserService {
 
   constructor(private userDataService: UserDataService, private router: Router) {
   }
@@ -36,12 +35,12 @@ export class UserService {
     if(userData.email){
       email = userData.email;
     }else{
-      console.error('Error interno'); 
-    } 
+      console.error('Error interno');
+    }
     this.userDataService.getUserByEmail(email).subscribe(
       users => {
         if(users.length != 0 ){
-          throw console.error('Email ya existente');  
+          throw console.error('Email ya existente');
         }else{
           this.userDataService.createUser(userData).subscribe();
         }
@@ -56,5 +55,10 @@ export class UserService {
   performLogout() {
     sessionStorage.removeItem('user');
     this.router.navigateByUrl('home');
+  }
+
+  getUserId(): string | undefined{
+    let currentUser : User = JSON.parse(<string>sessionStorage.getItem('user'));
+    return currentUser.id;
   }
 }

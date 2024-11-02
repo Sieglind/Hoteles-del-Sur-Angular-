@@ -4,6 +4,7 @@ import {Room} from '../../models/room.model';
 import {ReservationService} from '../../services/reservation.service';
 import {AvailabilityService} from '../../services/availability.service';
 import {Reservation} from '../../models/reservation.model';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-reservation-form',
@@ -16,7 +17,12 @@ export class ReservationFormComponent implements OnInit {
   availableRooms: Room[] = [];
   reservation : Reservation | undefined;
 
-  constructor(private fb: FormBuilder, private availabilityService: AvailabilityService, private reservationService: ReservationService) {
+  constructor(
+    private fb: FormBuilder,
+    private availabilityService: AvailabilityService,
+    private reservationService: ReservationService,
+    private userService: UserService,
+  ) {
     this.reservationForm = this.fb.group({
       checkInDate: [Validators.required],
       checkOutDate: [Validators.required],
@@ -40,9 +46,9 @@ export class ReservationFormComponent implements OnInit {
     }
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.reservationForm.valid && this.reservation) {
-      this.reservationService.createReservation(this.reservation).subscribe()
+      await this.reservationService.createReservation(this.reservation);
     } else {
       console.log('Form is invalid');
     }

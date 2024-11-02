@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "firstName": "Facundo",
       "lastName": "Pérez",
       "email": "facundo@example.com",
@@ -9,7 +9,7 @@
       "password": "123456"
     },
     {
-      "id": 2,
+      "id": "2",
       "firstName": "María",
       "lastName": "Gómez",
       "email": "maria@example.com",
@@ -17,7 +17,7 @@
       "password": ""
     },
     {
-      "id": 3,
+      "id": "3",
       "firstName": "Carlos",
       "lastName": "López",
       "email": "carlos@example.com",
@@ -25,7 +25,7 @@
       "password": ""
     },
     {
-      "id": 4,
+      "id": "4",
       "firstName": "Laura",
       "lastName": "Martínez",
       "email": "laura@example.com",
@@ -33,17 +33,27 @@
       "password": ""
     },
     {
-      "id": 5,
+      "id": "5",
       "firstName": "Ricardo",
       "lastName": "Díaz",
       "email": "ricardo@example.com",
       "phone": "654-123-7890",
       "password": ""
+    },
+    {
+      "id": "f94b",
+      "user": {
+        "firstName": "Cristian",
+        "lastName": "Moraleda",
+        "email": "moraleda@gmail.com",
+        "phoneNumber": "3216549873",
+        "password": "123456"
+      }
     }
   ],
   "rooms": [
     {
-      "id": 101,
+      "id": "101",
       "type": "Double",
       "details": {
         "capacity": 2,
@@ -52,7 +62,7 @@
       }
     },
     {
-      "id": 102,
+      "id": "102",
       "type": "Suite",
       "details": {
         "capacity": 4,
@@ -61,7 +71,7 @@
       }
     },
     {
-      "id": 103,
+      "id": "103",
       "type": "Single",
       "details": {
         "capacity": 1,
@@ -70,7 +80,7 @@
       }
     },
     {
-      "id": 104,
+      "id": "104",
       "type": "Double",
       "details": {
         "capacity": 2,
@@ -79,7 +89,7 @@
       }
     },
     {
-      "id": 105,
+      "id": "105",
       "type": "Suite",
       "details": {
         "capacity": 4,
@@ -88,7 +98,7 @@
       }
     },
     {
-      "id": 106,
+      "id": "106",
       "type": "Single",
       "details": {
         "capacity": 1,
@@ -97,7 +107,7 @@
       }
     },
     {
-      "id": 107,
+      "id": "107",
       "type": "Double",
       "details": {
         "capacity": 2,
@@ -106,7 +116,7 @@
       }
     },
     {
-      "id": 108,
+      "id": "108",
       "type": "Suite",
       "details": {
         "capacity": 4,
@@ -115,7 +125,7 @@
       }
     },
     {
-      "id": 109,
+      "id": "109",
       "type": "Single",
       "details": {
         "capacity": 1,
@@ -124,7 +134,7 @@
       }
     },
     {
-      "id": 110,
+      "id": "110",
       "type": "Double",
       "details": {
         "capacity": 2,
@@ -133,7 +143,7 @@
       }
     },
     {
-      "id": 111,
+      "id": "111",
       "type": "Suite",
       "details": {
         "capacity": 4,
@@ -142,7 +152,7 @@
       }
     },
     {
-      "id": 112,
+      "id": "112",
       "type": "Single",
       "details": {
         "capacity": 1,
@@ -151,7 +161,7 @@
       }
     },
     {
-      "id": 113,
+      "id": "113",
       "type": "Double",
       "details": {
         "capacity": 2,
@@ -160,7 +170,7 @@
       }
     },
     {
-      "id": 114,
+      "id": "114",
       "type": "Suite",
       "details": {
         "capacity": 4,
@@ -169,7 +179,7 @@
       }
     },
     {
-      "id": 115,
+      "id": "115",
       "type": "Single",
       "details": {
         "capacity": 1,
@@ -178,7 +188,7 @@
       }
     },
     {
-      "id": 116,
+      "id": "116",
       "type": "Double",
       "details": {
         "capacity": 2,
@@ -187,7 +197,7 @@
       }
     },
     {
-      "id": 117,
+      "id": "117",
       "type": "Suite",
       "details": {
         "capacity": 4,
@@ -196,7 +206,7 @@
       }
     },
     {
-      "id": 118,
+      "id": "118",
       "type": "Single",
       "details": {
         "capacity": 1,
@@ -205,7 +215,7 @@
       }
     },
     {
-      "id": 119,
+      "id": "119",
       "type": "Double",
       "details": {
         "capacity": 2,
@@ -214,7 +224,7 @@
       }
     },
     {
-      "id": 120,
+      "id": "120",
       "type": "Suite",
       "details": {
         "capacity": 4,
@@ -223,13 +233,5 @@
       }
     }
   ],
-  "reservations": [
-    {
-      "id": "8aeb",
-      "checkInDate": "2024-11-01T03:00:00.000Z",
-      "checkOutDate": "2024-11-02T03:00:00.000Z",
-      "guests": 4,
-      "roomId": 120
-    }
-  ]
+  "reservations": []
 }

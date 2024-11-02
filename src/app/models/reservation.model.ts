@@ -4,6 +4,7 @@ export class Reservation {
   checkOutDate: Date;
   guests: number;
   roomId: string | undefined
+  userId: string | undefined
 
 
   constructor(checkInDate: Date, checkOutDate: Date, guests: number) {
