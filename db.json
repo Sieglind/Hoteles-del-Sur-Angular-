@@ -233,5 +233,14 @@
       }
     }
   ],
-  "reservations": []
+  "reservations": [
+    {
+      "id": "aef2",
+      "checkInDate": "2024-11-02T03:00:00.000Z",
+      "checkOutDate": "2024-11-03T03:00:00.000Z",
+      "guests": 4,
+      "roomId": "117",
+      "userId": "1"
+    }
+  ]
 }

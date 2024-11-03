@@ -14,8 +14,7 @@ export class MyReservationsComponent implements OnInit {
 
   constructor(
     private reservationService: ReservationService,
-    public dialog: MatDialog,
-    private router: Router,
+    public dialog: MatDialog
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -39,5 +38,6 @@ export class MyReservationsComponent implements OnInit {
 
   cancelReservation(reservationId: string): void {
     this.reservationService.deleteReservation(reservationId);
+    this.ngOnInit()
   }
 }

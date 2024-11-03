@@ -7,7 +7,7 @@
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 20px;
-  text-align: left; 
+  text-align: left;
 }
 
 .reservations-list {
@@ -31,6 +31,10 @@
   margin: 5px 0;
 }
 
+.reservation-card strong {
+  font-weight: bold;
+}
+
 .button-group {
   display: flex;
   flex-direction: column;
@@ -52,6 +56,4 @@ button.btn-cancel:hover {
   opacity: 0.8;
 }
 
-.reservation-card strong {
-  font-weight: bold;
-}
+

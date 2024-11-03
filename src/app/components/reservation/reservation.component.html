@@ -1,0 +1,8 @@
+<div *ngIf="reservation" class="reservation-card">
+  <p><strong>ID:</strong> {{ reservation.id }}</p>
+  <p><strong>Check-In:</strong> {{ reservation.checkInDate | date }}</p>
+  <p><strong>Check-Out:</strong> {{ reservation.checkOutDate | date }}</p>
+  <p><strong>Huéspedes:</strong> {{ reservation.guests }}</p>
+  <p><strong>Habitación:</strong> {{ reservation.roomId }}</p>
+  <button (click)="goToReservations()" class="back-button">Back to Reservations</button>
+</div>

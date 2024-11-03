@@ -16,11 +16,16 @@ export class ReservationDataService {
     return this.http.post<Reservation | undefined>(`${this.apiUrl}/reservations`, reservationData).toPromise();
   }
 
+
+  getReservationById(reservationId: string) {
+    return this.http.get<Reservation>(`${this.apiUrl}/reservations/${reservationId}`).toPromise();
+  }
+
   getReservations(): Promise<Reservation[] | undefined> {
     return this.http.get<Reservation[]>(`${this.apiUrl}/reservations`).toPromise();
   }
 
-  getReservationById(reservationId: string): Promise<Reservation[] | undefined> {
+  getUserReservations(reservationId: string): Promise<Reservation[] | undefined> {
     return this.http.get<Reservation[]>(`${this.apiUrl}/reservations?userId=${reservationId}`).toPromise();
   }
 

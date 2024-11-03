@@ -34,23 +34,27 @@ export class ReservationService {
     }
   }
 
-  async getReservations(): Promise<Reservation[] | undefined> {
-    const foundReservations = await this.reservationDataService.getReservations();
-    if (foundReservations) foundReservations.forEach(reservation => this.setLocalDate(reservation));
-    return foundReservations;
+  async getReservation(reservationId: string): Promise<Reservation | undefined> {
+    return await this.reservationDataService.getReservationById(reservationId);
   }
 
   async getUserReservations(): Promise<Reservation[] | undefined> {
     let userId : string | undefined = this.userService.getUserId();
     let reservations : Reservation[] = [];
     if(userId){
-      const foundReservations = await this.reservationDataService.getReservationById(userId);
+      const foundReservations = await this.reservationDataService.getUserReservations(userId);
       if (foundReservations) {
         foundReservations.forEach(reservation => this.setLocalDate(reservation))
         reservations = foundReservations;
       }
     }
     return reservations;
+  }
+
+  async getReservations(): Promise<Reservation[] | undefined> {
+    const foundReservations = await this.reservationDataService.getReservations();
+    if (foundReservations) foundReservations.forEach(reservation => this.setLocalDate(reservation));
+    return foundReservations;
   }
 
   async deleteReservation(id: string): Promise<void> {

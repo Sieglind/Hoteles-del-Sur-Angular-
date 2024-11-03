@@ -4,7 +4,7 @@ import {Room} from '../../models/room.model';
 import {ReservationService} from '../../services/reservation.service';
 import {AvailabilityService} from '../../services/availability.service';
 import {Reservation} from '../../models/reservation.model';
-import {UserService} from '../../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-reservation-form',
@@ -21,13 +21,13 @@ export class ReservationFormComponent implements OnInit {
     private fb: FormBuilder,
     private availabilityService: AvailabilityService,
     private reservationService: ReservationService,
-    private userService: UserService,
+    private router : Router,
   ) {
     this.reservationForm = this.fb.group({
       checkInDate: [Validators.required],
       checkOutDate: [Validators.required],
       guests: [[Validators.required, Validators.min(1)]],
-      roomId: [Validators.required]
+      roomId: [Validators.required],
     });
   }
 
@@ -48,7 +48,10 @@ export class ReservationFormComponent implements OnInit {
 
   async onSubmit(): Promise<void> {
     if (this.reservationForm.valid && this.reservation) {
-      await this.reservationService.createReservation(this.reservation);
+      let id: string | undefined = await this.reservationService.createReservation(this.reservation);
+      if (id) {
+        await this.router.navigateByUrl(`/reservations/${id}`);
+      }
     } else {
       console.log('Form is invalid');
     }

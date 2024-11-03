@@ -1,0 +1,35 @@
+.reservation-card {
+  border: 2px solid #ddd; /* Thicker border */
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+  max-width: 400px; /* Adjust width */
+  margin: 0 auto; /* Center the card */
+}
+
+.reservation-card p {
+  margin: 5px 0;
+}
+
+.reservation-card strong {
+  font-weight: bold;
+}
+
+.back-button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
