@@ -1,20 +1,28 @@
 <div class="container">
-  <div class="media-column">
-    <div *ngIf="videoMediaUrls" class="media-wrapper">
-      <div *ngFor="let videoUrl of videoMediaUrls" class="media-card">
-        <video [src]="videoUrl" width="640" height="360" frameborder="0" controls></video>
-      </div>
-    </div>
-    <div *ngIf="photoMedia" class="media-wrapper">
-      <div *ngFor="let photo of photoMedia" class="media-card">
-        <img [src]="photo.src.large" alt="Image">
-      </div>
-    </div>
-  </div>
   <div class="text-column">
     <div class="media-card blank-card">
-      <h1>{{ service.title }}</h1>
-      <p>{{ service.description }}</p>
+      <h1>{{ service?.title }}</h1>
+      <p>{{ service?.description }}</p>
+    </div>
+  </div>
+  <div class="media-column">
+    <div *ngIf="videoMediaUrls.length" class="media-wrapper">
+      <button class="prev" (click)="prevSlide()">&#10094;</button>
+      <div class="slider">
+        <div *ngFor="let videoUrl of videoMediaUrls" class="media-card slide">
+          <video [src]="videoUrl" frameborder="0" controls></video>
+        </div>
+      </div>
+      <button class="next" (click)="nextSlide()">&#10095;</button>
+    </div>
+    <div *ngIf="photoMedia?.length" class="media-wrapper">
+      <button class="prev" (click)="prevSlide()">&#10094;</button>
+      <div class="slider">
+        <div *ngFor="let photo of photoMedia" class="media-card slide">
+          <img [src]="photo.src.large" alt="Image">
+        </div>
+      </div>
+      <button class="next" (click)="nextSlide()">&#10095;</button>
     </div>
   </div>
 </div>

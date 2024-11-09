@@ -14,6 +14,7 @@ export class ServiceComponent implements OnInit {
   @Input() service : any;
   photoMedia: Photo[] | undefined;
   videoMediaUrls: SafeResourceUrl[] = [];
+  currentSlide = 0;
 
   constructor(
     private pexeService: PexelService,
@@ -31,6 +32,10 @@ export class ServiceComponent implements OnInit {
     )
   }
 
+  ngAfterViewInit(): void { 
+    this.updateSlidePosition(); 
+  }
+
   async getServiceMedia(): Promise<void> {
     this.pexeService.getCollectionMedia(this.service.id).then(collection => {
       if (collection) {
@@ -44,7 +49,24 @@ export class ServiceComponent implements OnInit {
               this.videoMediaUrls.push(this.sanitizer.bypassSecurityTrustResourceUrl(videoFile.link));
             }
           });
-      }
+          this.updateSlidePosition();
+        }
     }).catch(error => console.log(error));
   }
+
+  
+  nextSlide(): void { 
+    this.currentSlide = (this.currentSlide + 1) 
+    % this.service.videoMediaUrls.length;
+  } 
+
+  prevSlide(): void { 
+    this.currentSlide = (this.currentSlide - 1 + 
+    this.service.videoMediaUrls.length) % this.service.videoMediaUrls.length; } 
+  
+  updateSlidePosition(): void { 
+    const slides = document.querySelectorAll('.slide'); 
+    slides.forEach((slide: any, index) => {
+       slide.style.transform = `translateX(-${this.currentSlide * 100}%)`; }); }
+
 }

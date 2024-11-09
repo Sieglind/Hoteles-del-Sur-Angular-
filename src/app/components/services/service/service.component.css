@@ -1,50 +1,107 @@
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: space-between;
+
+.container { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 20px; 
+  width: 1200px; 
+  padding: 20px; 
+  background-color: #ffffff; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  border-radius: 8px; 
+  align-items: center;  
+  margin-left: 100px;
+  margin-right:50px;
 }
 
-.media-column, .text-column {
+.text-column, .media-column {
   flex: 1;
-  min-width: 300px;
+  width: 100%;
+}
+
+.text-column .media-card {
+  padding: 20px;
+  background-color: #ffffff;
+
+}
+
+.blank-card h1 {
+  font-family: 'Candara', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #007BFF;
+  text-align: center;
+}
+
+.blank-card p {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 16px;
+  color: #555;
+  text-align: center;
 }
 
 .media-wrapper {
+  position:relative;
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  transition: transform 0.5s ease-in-out;
 }
 
 .media-card {
-  background: #f9f9f9;
+  background: #ffffff;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
 }
 
 .media-card:hover {
   transform: scale(1.05);
 }
 
-.video-card video, .media-card img {
+.media-card video, .media-card img {
   width: 100%;
   height: auto;
-  border-bottom: 1px solid #ddd;
+  max-height: 400px; 
 }
 
-.text-column .media-card {
-  padding: 20px;
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
 }
 
-.blank-card h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
+
+
+.prev {
+  left: 10px;
 }
 
-.blank-card p {
-  font-size: 16px;
-  color: #555;
+.next {
+  right: 10px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
