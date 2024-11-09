@@ -1,8 +1,7 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReservationService } from '../../services/reservation.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-my-reservations',
@@ -18,11 +17,10 @@ export class MyReservationsComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    const reservations = await this.reservationService.getUserReservations()
-    if (reservations) this.reservations = reservations;
+    await this.getReservations();
   }
 
-  openConfirmDialog(reservationId: string): void {
+  async openConfirmDialog(reservationId: string): Promise<void> {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '400px',
       height: '200px',
@@ -36,8 +34,13 @@ export class MyReservationsComponent implements OnInit {
     });
   }
 
-  cancelReservation(reservationId: string): void {
-    this.reservationService.deleteReservation(reservationId);
-    this.ngOnInit()
+  async cancelReservation(reservationId: string): Promise<void> {
+    await this.reservationService.deleteReservation(reservationId);
+    await this.getReservations()
+  }
+
+  async getReservations(){
+    const reservations = await this.reservationService.getUserReservations()
+    if (reservations) this.reservations = reservations;
   }
 }
