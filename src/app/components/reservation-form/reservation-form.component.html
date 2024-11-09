@@ -26,7 +26,7 @@
         </div>
       </div>
 
-      <button type="button" (click)="onCheckAvailability()" class="btn btn-secondary">Verificar disponibilidad</button>
+      <button type="button" (click)="onCheckAvailability()" class="btn btn-primary confirm-btn">Verificar disponibilidad</button>
     </div>
 
     <div *ngIf="availableRooms.length > 0" class="rooms-section">
@@ -38,9 +38,10 @@
             <p>Tipo: {{ room.type }}</p>
             <p>Capacidad: {{ room.details.capacity }}</p>
             <p>Precio por noche: ${{ room.details.pricePerNight }}</p>
+            <img [src]= "room.details.imageUrl" alt="Image">
             <button type="button"
                     (click)="selectRoom(room.id)"
-                    [ngClass]="{'btn-success': reservation?.roomId === room.id, 'btn-secondary': reservation?.roomId !== room.id}"
+                    [ngClass]="{'room-btn-success': reservation?.roomId === room.id, 'room-btn-secondary': reservation?.roomId !== room.id}"
                     class="btn">
               Seleccionar
             </button>

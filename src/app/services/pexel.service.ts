@@ -10,7 +10,7 @@ export class PexelService {
   pexelApiUrl: string = 'https://api.pexels.com/v1/collections';
   headers: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': ''
+    'Authorization': 'hWkij7wdARDTvvs8FItfQCE9mgNdRvxr5TiiBBFHGca9As8zWyP74BwQ'
   });
 
 

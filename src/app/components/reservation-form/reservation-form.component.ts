@@ -40,7 +40,7 @@ export class ReservationFormComponent implements OnInit {
 
     if (checkInDate && checkOutDate && guests){
       this.reservation = new Reservation(checkInDate,checkOutDate,guests);
-      this.availableRooms = await this.availabilityService.getAvailableRooms(this.reservation);
+      this.availableRooms = await this.availabilityService.getAvailableRooms(this.reservation);    
     } else {
       console.log("Form invalido")
     }

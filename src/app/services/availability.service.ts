@@ -39,6 +39,7 @@ export class AvailabilityService {
     console.log(reservationRoomIds);
 
     const foundRooms = await this.roomDataService.getRooms();
+    
     return foundRooms ? foundRooms
       .filter(fr => fr.details.available)
       .filter(fr => !reservationRoomIds.includes(fr.id))

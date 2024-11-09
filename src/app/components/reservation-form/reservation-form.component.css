@@ -1,7 +1,7 @@
 /* Center the reservation container */
 .reservation-container {
   width: 100%;
-  margin: 0 auto; /* Center the container horizontally */
+  margin: 0 auto;
   padding: 2rem;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -45,9 +45,9 @@
 }
 
 .form-group .form-control:focus {
-  border-color: #007bff;
+  border-color: #3b88c7;
   outline: none;
-  box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+  box-shadow: 0px 0px 5px rgb(31, 102, 151);
 }
 
 /* Style the error message */
@@ -68,20 +68,16 @@
   transition: background-color 0.3s ease;
 }
 
-.btn-secondary {
-  background-color: #6c757d; /* Dark grey for availability check button */
-  color: #fff;
-  border: none;
-}
-
-.btn-secondary:hover {
-  background-color: #5a6268; /* Darker grey on hover */
-}
-
+.room-btn-secondary,
 .btn-primary {
-  background-color: #007bff; /* Blue for confirm button */
+  background-color: #3b88c7;
   color: #fff;
   border: none;
+}
+
+.room-btn-secondary:hover,
+.btn-primary:hover:not(:disabled) {
+  background-color: #1f6697;
 }
 
 .btn-primary:disabled {
@@ -89,36 +85,50 @@
   cursor: not-allowed;
 }
 
-.btn-primary:hover:not(:disabled) {
-  background-color: #0056b3; /* Darker blue on hover */
+/* Specific style for the selected room button */
+.room-btn-success {
+  background-color: #053555;
+  color: #fff;
+}
+
+.room-btn-success:hover {
+  background-color: #76badc;
+}
+
+/* Add margin to the Confirmar Reserva button */
+.confirm-btn-wrapper {
+  margin-top: 1.5rem;
 }
 
 /* Style for room cards */
 .rooms-grid {
-  display: grid; /* Use CSS Grid for layout */
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
-  gap: 1rem; /* Space between grid items */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
 }
 
 .room-card {
-  border: 1px solid #ddd; /* Light grey border around each room card */
-  border-radius: 8px; /* Rounded corners */
-  padding: 1rem; /* Padding inside the card */
-  background-color: #fff; /* White background for the cards */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #fff;
   transition: box-shadow 0.3s ease;
 }
 
-/* Optional: Add hover effect for room cards */
 .room-card:hover {
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect on hover */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.btn-success {
-  background-color: #28a745; /* Green for selected room button */
-  color: #fff;
+/* Style for room images */
+.room-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 1rem;
 }
 
-.btn-success:hover {
-  background-color: #218838; /* Darker green on hover */
+/* Optional margin above the room button */
+.room-card .btn {
+  margin-top: 0.5rem;
 }
-
