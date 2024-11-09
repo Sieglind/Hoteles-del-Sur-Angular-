@@ -1,7 +1,7 @@
 <div class="services-grid">
   <div class="service-card" *ngFor="let service of services">
-    <img [src]="service" alt="{{ service.title }}" class="service-image" />
+    <img [src]="service.imageUrl" alt="{{ service.title }}" class="service-image" />
     <h3 class="service-title">{{ service.title }}</h3>
-    <h6 class="service-subtitle">{{ service.subtitle }}</h6>
+    <p class="service-subtitle">{{ service.subtitle }}</p>
   </div>
 </div>

@@ -3,5 +3,6 @@ export class Service{
     title: string | undefined;
     subtitle: string | undefined;
     description: string | undefined;
+    imageUrl: string | undefined;
 }
 
