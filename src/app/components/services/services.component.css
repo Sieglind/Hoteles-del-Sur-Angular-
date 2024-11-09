@@ -1,26 +1,46 @@
-/* Center the details elements */
-div {
-  display: flex;
-  justify-content: center; /* Centers horizontally */
-  margin: 20px 0; /* Adds some vertical spacing */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Ajusta el tamaño de las columnas */
+  gap: 25px; /* Espacio entre tarjetas */
+  padding: 24px;
 }
 
-/* Style the summary (button) */
-summary {
-  background-color: #5692dc; /* Light blue color */
-  padding: 10px; /* Padding around the text */
-  border: none; /* Remove default border */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  font-size: 1.2em; /* Increase font size */
+.service-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
 }
 
-/* Change background color on hover */
-summary:hover {
-  background-color: #72a4e5; /* Darker blue on hover */
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Optional: Add transition effect */
-summary {
-  transition: background-color 0.3s ease; /* Smooth transition */
+.service-image {
+  width: 100%; /* Ajusta la imagen al ancho de la tarjeta */
+  height: 200px; 
+  object-fit: cover; 
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.service-title {
+  font-family: 'Candara';
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  margin-top: 12px;
+}
+
+.service-subtitle{
+  font-family: 'Helvetica';
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 15px;
 }
