@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PexelService} from '../../../services/pexel.service';
-import {Photo, Video} from 'pexels';
+import {Photo} from 'pexels';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {EventBusService} from '../../../services/event-bus.service';
 
@@ -11,16 +11,20 @@ import {EventBusService} from '../../../services/event-bus.service';
 })
 export class ServiceComponent implements OnInit {
 
-  @Input() service : any;
-  photoMedia: Photo[] | undefined;
+  @Input() service: any;
+  photoMedia: Photo[] = [];
+  photoCount: number = 0;
+  currentPhotoSlide = 0;
   videoMediaUrls: SafeResourceUrl[] = [];
-  currentSlide = 0;
+  videoCount: number = 0;
+  currentVideoSlide = 0;
 
   constructor(
     private pexeService: PexelService,
     private sanitizer: DomSanitizer,
     private eventBusService: EventBusService
-  ) {}
+  ) {
+  }
 
   async ngOnInit() {
     await this.getServiceMedia();
@@ -32,14 +36,11 @@ export class ServiceComponent implements OnInit {
     )
   }
 
-  ngAfterViewInit(): void { 
-    this.updateSlidePosition(); 
-  }
-
   async getServiceMedia(): Promise<void> {
     this.pexeService.getCollectionMedia(this.service.id).then(collection => {
       if (collection) {
-        this.photoMedia = collection.media.filter(collectioNmedia => collectioNmedia.type == 'Photo')
+        this.photoMedia = collection.media.filter(collectioNmedia => collectioNmedia.type == 'Photo');
+        this.photoCount = this.photoMedia.length
         this.videoMediaUrls = [];
         collection.media
           .filter(media => media.type === 'Video')
@@ -48,25 +49,41 @@ export class ServiceComponent implements OnInit {
             if (videoFile) {
               this.videoMediaUrls.push(this.sanitizer.bypassSecurityTrustResourceUrl(videoFile.link));
             }
-          });
-          this.updateSlidePosition();
-        }
+          })
+        this.videoCount = this.videoMediaUrls.length
+      }
     }).catch(error => console.log(error));
   }
 
-  
-  nextSlide(): void { 
-    this.currentSlide = (this.currentSlide + 1) 
-    % this.service.videoMediaUrls.length;
-  } 
+  prevVideo() {
+    if (this.currentVideoSlide > 0) {
+      this.currentVideoSlide--;
+    } else {
+      this.currentVideoSlide = this.videoCount - 1;
+    }
+  }
 
-  prevSlide(): void { 
-    this.currentSlide = (this.currentSlide - 1 + 
-    this.service.videoMediaUrls.length) % this.service.videoMediaUrls.length; } 
-  
-  updateSlidePosition(): void { 
-    const slides = document.querySelectorAll('.slide'); 
-    slides.forEach((slide: any, index) => {
-       slide.style.transform = `translateX(-${this.currentSlide * 100}%)`; }); }
+  nextVideo() {
+    if (this.currentVideoSlide == this.videoCount - 1) {
+      this.currentVideoSlide = 0;
+    } else {
+      this.currentVideoSlide++
+    }
+  }
 
+  prevPhoto() {
+    if (this.currentPhotoSlide > 0) {
+      this.currentPhotoSlide--;
+    } else {
+      this.currentPhotoSlide = this.photoCount - 1;
+    }
+  }
+
+  nextPhoto() {
+    if (this.currentPhotoSlide == this.photoCount - 1) {
+      this.currentPhotoSlide = 0;
+    } else {
+      this.currentPhotoSlide++
+    }
+  }
 }
