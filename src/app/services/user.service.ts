@@ -61,4 +61,9 @@ export class UserService {
     let currentUser : User = JSON.parse(<string>sessionStorage.getItem('user'));
     return currentUser.id;
   }
+
+  getUserData(): User | null {
+    const user = sessionStorage.getItem('user');
+    return user ? JSON.parse(user) : null; 
+  }
 }

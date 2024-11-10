@@ -1,11 +1,13 @@
-<div *ngIf="userData">
+<div class="profile-section" *ngIf="userData">
     <h2>Perfil del Usuario</h2>
     <p><strong>Nombre:</strong> {{ userData.firstName }} {{ userData.lastName }}</p>
     <p><strong>Correo Electrónico:</strong> {{ userData.email }}</p>
     <p><strong>Teléfono:</strong> {{ userData.phone }}</p>
-  </div>
-  
-  <!-- Si no hay datos de usuario -->
-  <div *ngIf="!userData">
-    <p>No se ha encontrado información de usuario. Es posible que no hayas iniciado sesión.</p>
-  </div>
+
+    <div class="button-container"> <button class="btn-back" (click)="goBack()">Volver</button></div>
+
+</div>
+
+<div class="profile-section" *ngIf="!userData">
+    <p class="no-user-message">No se ha encontrado información de usuario. Es posible que no hayas iniciado sesión.</p>
+</div>
