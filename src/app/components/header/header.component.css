@@ -1,9 +1,8 @@
 .nav-link {
-  cursor: pointer; /* This will change the cursor to a hand */
-  text-decoration: none; /* Optional: Remove underline */
+  cursor: pointer;
+  text-decoration: none;
 }
 
-/* Optionally, add hover styles for better UX */
 .nav-link:hover {
-  text-decoration: underline; /* Underline on hover */
+  text-decoration: underline;
 }

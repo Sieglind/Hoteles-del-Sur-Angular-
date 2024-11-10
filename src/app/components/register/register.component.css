@@ -1,28 +1,24 @@
-/* Center the register container */
 .register-container {
   width: 100%;
-  max-width: 400px; /* Restrict width to 400px */
-  margin: 0 auto; /* Center the container horizontally */
+  max-width: 400px;
+  margin: 0 auto;
   padding: 2rem;
   border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #f9f9f9;
 }
 
-/* Style the form title */
 .register-container h2 {
   text-align: center;
   margin-bottom: 1.5rem;
   color: #333;
 }
 
-/* Style form groups */
 .register-container div {
   margin-bottom: 1.5rem;
 }
 
-/* Style the labels */
 .register-container label {
   display: block;
   font-weight: 500;
@@ -30,7 +26,6 @@
   color: #555;
 }
 
-/* Style the input fields */
 .register-container input {
   width: 100%;
   padding: 0.75rem;
@@ -43,10 +38,9 @@
 .register-container input:focus {
   border-color: #007bff;
   outline: none;
-  box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Style the error and success messages */
 .error, .success {
   font-size: 0.875rem;
   margin-top: 0.25rem;
@@ -61,7 +55,6 @@
   color: #5cb85c;
 }
 
-/* Style the submit button */
 .register-container button[type="submit"] {
   width: 100%;
   padding: 0.75rem;
