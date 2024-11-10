@@ -1,0 +1,11 @@
+<div *ngIf="userData">
+    <h2>Perfil del Usuario</h2>
+    <p><strong>Nombre:</strong> {{ userData.firstName }} {{ userData.lastName }}</p>
+    <p><strong>Correo Electrónico:</strong> {{ userData.email }}</p>
+    <p><strong>Teléfono:</strong> {{ userData.phone }}</p>
+  </div>
+  
+  <!-- Si no hay datos de usuario -->
+  <div *ngIf="!userData">
+    <p>No se ha encontrado información de usuario. Es posible que no hayas iniciado sesión.</p>
+  </div>
