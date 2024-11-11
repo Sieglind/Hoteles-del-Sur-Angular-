@@ -8,6 +8,7 @@ import {ReservationComponent} from './components/reservation/reservation.compone
 import {ServicesComponent} from './components/services/services.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {ContactComponent} from './components/contact/contact.component'; // Importar ContactComponent
+import { ServiceFormComponent } from './components/service-form/service-form.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'reservations/:id', component: ReservationComponent},
   {path: 'services', component: ServicesComponent},
+  {path: 'services/:id', component: ServiceFormComponent},
   {path: 'profile' , component: ProfileComponent},
   {path: 'contact', component: ContactComponent},
 ];
