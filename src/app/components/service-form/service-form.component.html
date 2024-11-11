@@ -37,7 +37,7 @@
 
         <div class="form-group">
             <label for="image">URL de la imagen</label>
-            <input type="image" id="image" formControlName="image" required class="form-control" />
+            <input type="url" id="image" formControlName="image" required class="form-control" />
             <div *ngIf="serviceForm.get('image')?.invalid && serviceForm.get('image')?.touched" class="error">
                 La imagen es obligatoria.
             </div>
