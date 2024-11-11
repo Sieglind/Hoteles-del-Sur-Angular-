@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'reservations/:id', component: ReservationComponent},
   {path: 'services', component: ServicesComponent},
-  {path: 'services/:id', component: ServiceFormComponent},
+  {path: 'services/add', component: ServiceFormComponent},
   {path: 'profile' , component: ProfileComponent},
   {path: 'contact', component: ContactComponent},
 ];

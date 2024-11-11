@@ -22,6 +22,16 @@ export class PexelService {
   async getCollectionMedia(collectionId: string) : Promise<Collection | undefined> {
     return this.http.get<Collection>(this.pexelApiUrl + `/${(collectionId)}`, {headers: this.headers}).toPromise();
   }
+
+   async collectionExists(collectionId: string): Promise<boolean> {
+    try {
+      const response = await this.getCollectionMedia(collectionId);
+      return true; 
+    } catch (error) {
+      return false; 
+    }
+  }  
+
 }
 
 export interface Collection {
