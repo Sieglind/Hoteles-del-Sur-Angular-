@@ -30,6 +30,7 @@ import { ReservationComponent } from './components/reservation/reservation.compo
 import { ServiceComponent } from './components/services/service/service.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { ServiceFormComponent } from './components/service-form/service-form.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { ContactComponent } from './components/contact/contact.component';
     ServiceComponent,
     ServicesComponent,
     ProfileComponent,
-    ContactComponent
+    ContactComponent,
+    ServiceFormComponent
   ],
   imports: [
     BrowserModule,

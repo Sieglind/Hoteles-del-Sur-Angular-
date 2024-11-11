@@ -15,4 +15,8 @@ export class ServicesService {
   async getAllServices(): Promise< Service[] | undefined>{
     return this.http.get<Service[]>(`${this.apiUrl}`).toPromise();
   }
+
+  async addService(newService: Service): Promise<Service | undefined> { 
+    return this.http.post<Service>(`${this.apiUrl}`, newService).toPromise();
+  }
 }
