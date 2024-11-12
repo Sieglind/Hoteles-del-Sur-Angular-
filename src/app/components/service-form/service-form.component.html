@@ -1,49 +1,54 @@
-<div class="service-container">
-    <h2>Añadir Servicio</h2>
-    <form (ngSubmit)="onSubmit()" [formGroup]="serviceForm" novalidate class="service-form">
-
+<body>
+    <div class="service-container">
+      <h3>Nuevo Servicio</h3>
+      <form (ngSubmit)="onSubmit()" [formGroup]="serviceForm" novalidate>
+        
         <div class="form-group">
-            <label for="id">ID Servicio</label>
-            <input type="text" id="id" formControlName="id" required class="form-control" />
-            <div *ngIf="serviceForm.get('id')?.invalid && serviceForm.get('id')?.touched" class="error">
-                El id es obligatorio.
-            </div>
+          <label for="id">ID Servicio</label>
+          <input type="text" id="id" formControlName="id" required class="form-control" />
+          <div *ngIf="serviceForm.get('id')?.invalid && serviceForm.get('id')?.touched" class="error">
+            El id es obligatorio.
+          </div>
         </div>
-
+        
         <div class="form-group">
-            <label for="title">Título</label>
-            <input type="text" id="title" formControlName="title" required class="form-control" />
-            <div *ngIf="serviceForm.get('title')?.invalid && serviceForm.get('title')?.touched" class="error">
-                El título es obligatorio.
-            </div>
+          <label for="title">Título</label>
+          <input type="text" id="title" formControlName="title" required class="form-control" />
+          <div *ngIf="serviceForm.get('title')?.invalid && serviceForm.get('title')?.touched" class="error">
+            El título es obligatorio.
+          </div>
         </div>
-
+        
         <div class="form-group">
-            <label for="subtitle">Subtítulo</label>
-            <input type="text" id="subtitle" formControlName="subtitle" required class="form-control" />
-            <div *ngIf="serviceForm.get('subtitle')?.invalid && serviceForm.get('subtitle')?.touched" class="error">
-                El subtítulo es obligatorio.
-            </div>
+          <label for="subtitle">Subtítulo</label>
+          <input type="text" id="subtitle" formControlName="subtitle" required class="form-control" />
+          <div *ngIf="serviceForm.get('subtitle')?.invalid && serviceForm.get('subtitle')?.touched" class="error">
+            El subtítulo es obligatorio.
+          </div>
         </div>
-
+        
         <div class="form-group">
-            <label for="description">Descripción</label>
-            <textarea id="description" formControlName="description" required class="form-control"></textarea>
-            <div *ngIf="serviceForm.get('description')?.invalid && serviceForm.get('description')?.touched"
-                class="error">
-                La descripción es obligatoria.
-            </div>
+          <label for="description">Descripción</label>
+          <textarea id="description" formControlName="description" required class="form-control"></textarea>
+          <div *ngIf="serviceForm.get('description')?.invalid && serviceForm.get('description')?.touched" class="error">
+            La descripción es obligatoria.
+          </div>
         </div>
-
+        
         <div class="form-group">
-            <label for="image">URL de la imagen</label>
-            <input type="url" id="image" formControlName="image" required class="form-control" />
-            <div *ngIf="serviceForm.get('image')?.invalid && serviceForm.get('image')?.touched" class="error">
-                La imagen es obligatoria.
-            </div>
+          <label for="imageUrl">URL de la imagen</label>
+          <input type="url" id="image" formControlName="imageUrl" required class="form-control" />
+          <div *ngIf="serviceForm.get('imageUrl')?.invalid && serviceForm.get('imageUrl')?.touched" class="error">
+            La imagen es obligatoria.
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary confirm-btn" [disabled]="!serviceForm.valid">
-            Añadir Servicio
-        </button>
-    </form>
-</div>
+        
+        <button type="submit" class="btn btn-primary confirm-btn" [disabled]="!serviceForm.valid">Añadir Servicio</button>
+      </form>
+
+      <div *ngIf="successMessage" class="success-message"> 
+        Servicio creado con éxito. 
+      </div>
+    </div>
+  </body>
+  

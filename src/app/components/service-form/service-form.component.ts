@@ -14,6 +14,7 @@ import { PexelService } from '../../services/pexel.service';
 export class ServiceFormComponent implements OnInit {
 
   serviceForm: FormGroup;
+  successMessage: boolean = false;
 
   constructor(private fb: FormBuilder,
     private servicesService: ServicesService,
@@ -23,7 +24,7 @@ export class ServiceFormComponent implements OnInit {
       title: ['', Validators.required],
       subtitle: ['', Validators.required],
       description: ['', Validators.required],
-      imageUrl: ['']
+      imageUrl: [''],
     });
   }
 
@@ -35,6 +36,9 @@ export class ServiceFormComponent implements OnInit {
       try {
         const addedService = await this.servicesService.addService(newService);
         if (addedService) {
+          this.serviceForm.reset(); 
+          this.successMessage = true;
+          setTimeout(() => this.successMessage = false, 3000);
           await this.router.navigateByUrl(`/services/${addedService.id}`);
         }
       } catch (error) {
