@@ -1,14 +1,25 @@
-<div>
-    <h2>Editar Reserva</h2>
-    <form [formGroup]="editForm" (ngSubmit)="onSave()">
-      <label for="checkInDate">Fecha de Ingreso</label>
-      <input type="date" id="checkInDate" formControlName="checkInDate" />
-  
-      <label for="checkOutDate">Fecha de Salida</label>
-      <input type="date" id="checkOutDate" formControlName="checkOutDate" />
-  
-      <button type="submit">Guardar Cambios</button>
-      <button type="button" (click)="onCancel()">Cancelar Reserva</button>
-    </form>
-  </div>
-  
+<div class="reservation-edit-container">
+  <h2>Editar Reserva</h2>
+  <form (ngSubmit)="onSave()" [formGroup]="editForm" novalidate class="reservation-edit-form">
+    <div class="form-group">
+      <label for="checkInDate">Fecha de Check-In</label>
+      <input type="date" id="checkInDate" formControlName="checkInDate" required class="form-control" />
+      <div *ngIf="editForm.get('checkInDate')?.invalid && editForm.get('checkInDate')?.touched" class="error">
+        La fecha de check-in es obligatoria.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="checkOutDate">Fecha de Check-Out</label>
+      <input type="date" id="checkOutDate" formControlName="checkOutDate" required class="form-control" />
+      <div *ngIf="editForm.get('checkOutDate')?.invalid && editForm.get('checkOutDate')?.touched" class="error">
+        La fecha de check-out es obligatoria.
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">Guardar Cambios</button>
+      <button type="button" class="btn btn-danger" (click)="onCancel()">Cancelar Reserva</button>
+    </div>
+  </form>
+</div>
