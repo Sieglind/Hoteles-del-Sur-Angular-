@@ -58,6 +58,22 @@ export class ReservationService {
   async deleteReservation(id: string): Promise<void> {
     await this.reservationDataService.deleteReservation(id);
   }
+  
+  updateReservation(reservation: Reservation): Promise<void> {
+    return this.http.put<void>(`${this.apiUrl}/${reservation.id}`, reservation).toPromise();
+  }
+  
+
+  fetchReservations(): Promise<Reservation[]> {
+    return this.http.get<Reservation[]>(this.apiUrl).toPromise()
+      .then(reservations => {
+        return reservations ? reservations.sort((a, b) => new Date(a.checkInDate).getTime() - new Date(b.checkInDate).getTime()) : [];
+      })
+      .catch(error => {
+        console.error("Error al obtener las reservas", error);       
+        return [];
+      });
+  }
 
   setLocalDate(reservation: Reservation): Reservation {
     reservation.checkInDate = new Date(reservation.checkInDate);

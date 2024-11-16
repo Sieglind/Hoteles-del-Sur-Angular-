@@ -10,6 +10,8 @@ import {ProfileComponent} from './components/profile/profile.component';
 import {ContactComponent} from './components/contact/contact.component';
 import { ServiceFormComponent } from './components/service-form/service-form.component';
 import {AddRoomsComponent } from './components/add-rooms/add-rooms.component';
+import { ReservationListComponent } from './components/reservation-list/reservation-list.component';
+import { ReservationEditComponent } from './components/reservation-edit/reservation-edit.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -23,6 +25,8 @@ const routes: Routes = [
   {path: 'profile' , component: ProfileComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'rooms/add', component: AddRoomsComponent},
+  { path: 'reservations', component: ReservationListComponent },
+  { path: 'edit-reservation/:id', component: ReservationEditComponent }
 ];
 
 @NgModule({

@@ -32,6 +32,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ServiceFormComponent } from './components/service-form/service-form.component';
 import { AddRoomsComponent } from './components/add-rooms/add-rooms.component';
+import { ReservationListComponent } from './components/reservation-list/reservation-list.component';
+import { ReservationEditComponent } from './components/reservation-edit/reservation-edit.component';
 
 
 @NgModule({
@@ -55,6 +57,8 @@ import { AddRoomsComponent } from './components/add-rooms/add-rooms.component';
     ServiceFormComponent,
     ContactComponent,
     AddRoomsComponent,
+    ReservationListComponent,
+    ReservationEditComponent,
   ],
   imports: [
     BrowserModule,

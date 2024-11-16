@@ -1,0 +1,9 @@
+<div>
+    <h1>Lista de Reservas</h1>
+    <ul>
+      <li *ngFor="let reservation of reservations">
+        Reserva ID: {{ reservation.id }} - Fecha de Ingreso: {{ reservation.checkInDate | date }} - Fecha de Salida: {{ reservation.checkOutDate | date }}
+      </li>
+    </ul>
+  </div>
+  

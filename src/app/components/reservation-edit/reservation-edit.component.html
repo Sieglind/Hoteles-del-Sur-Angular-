@@ -1,0 +1,14 @@
+<div>
+    <h2>Editar Reserva</h2>
+    <form [formGroup]="editForm" (ngSubmit)="onSave()">
+      <label for="checkInDate">Fecha de Ingreso</label>
+      <input type="date" id="checkInDate" formControlName="checkInDate" />
+  
+      <label for="checkOutDate">Fecha de Salida</label>
+      <input type="date" id="checkOutDate" formControlName="checkOutDate" />
+  
+      <button type="submit">Guardar Cambios</button>
+      <button type="button" (click)="onCancel()">Cancelar Reserva</button>
+    </form>
+  </div>
+  
