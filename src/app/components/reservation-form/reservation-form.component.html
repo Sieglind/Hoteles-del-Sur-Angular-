@@ -37,10 +37,6 @@
           Debe ingresar al menos 1 huésped.
         </div>
       </div>
-
-      <button type="button" (click)="onCheckAvailability()" class="btn btn-primary confirm-btn">Verificar
-        disponibilidad
-      </button>
       <button type="button" (click)="onCheckAvailability()" class="btn btn-primary confirm-btn" [disabled]="reservationForm.invalid">Verificar disponibilidad</button>
     </div>
 
@@ -57,7 +53,7 @@
             <button type="button"
                     (click)="selectRoom(room.id)"
                     [ngClass]="{
-                    'room-btn-success': reservation?.roomId === room.id && room.details.available,
+                    'room-btn-success': reservationForm.get('roomId')?.value === room.id && room.details.available,
                     'room-btn-secondary': reservation?.roomId !== room.id && room.details.available,
                     'room-btn-unavailable': !room.details.available
                     }"

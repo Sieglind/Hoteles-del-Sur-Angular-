@@ -34,17 +34,20 @@ export class ReservationFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  async onCheckAvailability(): Promise<void> {
+  onCheckAvailability() {
     if (this.reservationForm.valid){
-      this.rooms = await this.availabilityService.getAvailableRooms(this.reservationForm.value);
+      this.availabilityService.getAvailableRooms(this.reservationForm.value).subscribe(
+        rooms => this.rooms = rooms,
+        error => console.log(error)
+      )
     } else {
       console.log("Form invalido")
     }
   }
 
   async onSubmit(): Promise<void> {
-    if (this.reservationForm.valid && this.reservation) {
-      let id: string | undefined = await this.reservationService.createReservation(this.reservation);
+    if (this.reservationForm.valid) {
+      let id: string | undefined = await this.reservationService.createReservation(this.reservationForm.value);
       if (id) {
         await this.router.navigateByUrl(`/reservations/${id}`);
       }
@@ -54,6 +57,6 @@ export class ReservationFormComponent implements OnInit {
   }
 
   selectRoom(roomId: string): void {
-    if (this.reservation) this.reservation.roomId = roomId;
+    this.reservationForm.patchValue({roomId: roomId});
   }
 }
