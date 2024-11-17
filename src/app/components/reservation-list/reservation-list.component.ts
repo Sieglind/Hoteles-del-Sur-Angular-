@@ -4,23 +4,23 @@ import { ReservationService } from '../../services/reservation.service';
 @Component({
   selector: 'app-reservation-list',
   templateUrl: './reservation-list.component.html',
-  styleUrl: './reservation-list.component.css'
+  styleUrls: ['./reservation-list.component.css']
 })
-export class ReservationListComponent implements OnInit{
+export class ReservationListComponent implements OnInit {
   reservations: any[] = [];
   errorMessage: string | null = null;
 
-  constructor(private reservationService: ReservationService){}
+  constructor(private reservationService: ReservationService) {}
 
   ngOnInit(): void {
     this.loadReservation();
   }
 
-  async loadReservation(): Promise<void>{
-    try{
+  async loadReservation(): Promise<void> {
+    try {
       this.reservations = await this.reservationService.fetchReservations();
-    }catch(error){
-      this.errorMessage = "Error al cargar las reservas.Intentelo Nuevamente";
+    } catch (error) {
+      this.errorMessage = "Error al cargar las reservas. Inténtelo nuevamente.";
       console.error(error);
     }
   }

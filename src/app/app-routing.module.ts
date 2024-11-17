@@ -19,13 +19,13 @@ const routes: Routes = [
   {path: 'reservations', component: MyReservationsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
+  { path:'reservations/list', component: ReservationListComponent },
   {path: 'reservations/:id', component: ReservationComponent},
   {path: 'services', component: ServicesComponent},
   {path: 'services/add', component: ServiceFormComponent},
   {path: 'profile' , component: ProfileComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'rooms/add', component: AddRoomsComponent},
-  { path: 'reservations', component: ReservationListComponent },
   { path: 'edit-reservation/:id', component: ReservationEditComponent }
 ];
 

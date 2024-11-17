@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Reservation } from '../models/reservation.model';
 import {ReservationDataService} from './reservation-data.service';
 import {UserService} from './user.service';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -65,15 +66,14 @@ export class ReservationService {
   
 
   fetchReservations(): Promise<Reservation[]> {
-    return this.http.get<Reservation[]>(this.apiUrl).toPromise()
-      .then(reservations => {
-        return reservations ? reservations.sort((a, b) => new Date(a.checkInDate).getTime() - new Date(b.checkInDate).getTime()) : [];
-      })
-      .catch(error => {
-        console.error("Error al obtener las reservas", error);       
-        return [];
-      });
+    return lastValueFrom(
+      this.http.get<Reservation[]>(`${this.apiUrl}/reservations`)
+    )
+    .then(reservations => 
+      reservations?.sort((a, b) => new Date(a.checkInDate).getTime() - new Date(b.checkInDate).getTime()) || []
+    );
   }
+
 
   setLocalDate(reservation: Reservation): Reservation {
     reservation.checkInDate = new Date(reservation.checkInDate);

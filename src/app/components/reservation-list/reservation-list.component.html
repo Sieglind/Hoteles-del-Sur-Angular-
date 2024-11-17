@@ -1,9 +1,27 @@
-<div>
-    <h1>Lista de Reservas</h1>
-    <ul>
-      <li *ngFor="let reservation of reservations">
-        Reserva ID: {{ reservation.id }} - Fecha de Ingreso: {{ reservation.checkInDate | date }} - Fecha de Salida: {{ reservation.checkOutDate | date }}
-      </li>
-    </ul>
+<div class="reservation-list-container">
+  <h2>Lista de Reservas</h2>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
   </div>
-  
+
+  <div *ngIf="reservations.length > 0; else noReservations" class="reservation-list">
+    <div class="reservation-item" *ngFor="let reservation of reservations">
+      <p>
+        <strong>Reserva ID:</strong> {{ reservation.id }}
+      </p>
+      <p>
+        <strong>Fecha de Ingreso:</strong> {{ reservation.checkInDate | date }}
+      </p>
+      <p>
+        <strong>Fecha de Salida:</strong> {{ reservation.checkOutDate | date }}
+      </p>
+    </div>
+  </div>
+
+  <ng-template #noReservations>
+    <div class="no-reservations">
+      <p>No hay reservas disponibles.</p>
+    </div>
+  </ng-template>
+</div>
