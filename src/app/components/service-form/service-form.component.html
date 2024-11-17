@@ -1,5 +1,4 @@
-<body>
-    <div class="service-container">
+<div class="service-container">
       <h3>Nuevo Servicio</h3>
       <form (ngSubmit)="onSubmit()" [formGroup]="serviceForm" novalidate>
 
@@ -49,5 +48,6 @@
       <div *ngIf="successMessage" class="success-message">
         Servicio creado con éxito.
       </div>
-    </div>
-  </body>
+</div>
+
+<!-- Le saque el body para ver si le podia cambiar el fondo -->
