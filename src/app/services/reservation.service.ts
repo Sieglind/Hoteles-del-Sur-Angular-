@@ -60,9 +60,11 @@ export class ReservationService {
     await this.reservationDataService.deleteReservation(id);
   }
   
-  updateReservation(reservation: Reservation): Promise<void> {
-    return this.http.put<void>(`${this.apiUrl}/${reservation.id}`, reservation).toPromise();
+  async updateReservation(reservation: Reservation): Promise<void> {
+    const formattedReservation = reservation.toJ;  
+    await this.reservationDataService.updateReservation(formattedReservation);  
   }
+  
   
 
   fetchReservations(): Promise<Reservation[]> {

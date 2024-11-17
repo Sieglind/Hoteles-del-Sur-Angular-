@@ -16,6 +16,11 @@
       <p>
         <strong>Fecha de Salida:</strong> {{ reservation.checkOutDate | date }}
       </p>
+
+      <div class="actions">
+        <button class="btn btn-primary" (click)="onEdit(reservation)">Editar</button>
+        <button class="btn btn-danger" (click)="onCancel(reservation)">Cancelar</button>
+      </div>
     </div>
   </div>
 
