@@ -3,7 +3,7 @@
   <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" novalidate>
     <div class="form-group">
       <label for="email">Correo:</label>
-      <input id="email" formControlName="email" placeholder="facundo@example.com" class="form-control" />
+      <input id="email" formControlName="email" placeholder="info@hotelesdelsur.com" class="form-control" />
       <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
         <small>El correo es obligatorio y debe ser válido.</small>
       </div>
