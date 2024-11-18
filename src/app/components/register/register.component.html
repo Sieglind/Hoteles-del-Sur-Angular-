@@ -1,20 +1,20 @@
 <div class="register-container">
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div>
-      <label>First Name</label>
+      <label>Nombre/s</label>
       <input formControlName="firstName"/>
       <div *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
-        <small *ngIf="registerForm.get('firstName')?.errors?.['required']">First name is required.</small>
-        <small *ngIf="registerForm.get('firstName')?.errors?.['minlength']">Minimum 2 characters.</small>
+        <small *ngIf="registerForm.get('firstName')?.errors?.['required']">Debe ingresar un nombre.</small>
+        <small *ngIf="registerForm.get('firstName')?.errors?.['minlength']">Mínimo dos caracteres.</small>
       </div>
     </div>
 
     <div>
-      <label>Last Name</label>
+      <label>Apellido</label>
       <input formControlName="lastName"/>
       <div *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
-        <small *ngIf="registerForm.get('lastName')?.errors?.['required']">Last name is required.</small>
-        <small *ngIf="registerForm.get('lastName')?.errors?.['minlength']">Minimum 2 characters.</small>
+        <small *ngIf="registerForm.get('lastName')?.errors?.['required']">Debe ingresar un apellido.</small>
+        <small *ngIf="registerForm.get('lastName')?.errors?.['minlength']">Mínimo dos caracteres.</small>
       </div>
     </div>
 
@@ -22,26 +22,26 @@
       <label>Email</label>
       <input formControlName="email" type="email"/>
       <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
-        <small *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</small>
-        <small *ngIf="registerForm.get('email')?.errors?.['email']">Invalid email format.</small>
+        <small *ngIf="registerForm.get('email')?.errors?.['required']">Debe ingresar un email.</small>
+        <small *ngIf="registerForm.get('email')?.errors?.['email']">Formato de email no valido</small>
       </div>
     </div>
 
     <div>
-      <label>Phone Number</label>
+      <label>Teléfono</label>
       <input formControlName="phoneNumber"/>
       <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched">
-        <small *ngIf="registerForm.get('phoneNumber')?.errors?.['required']">Phone number is required.</small>
-        <small *ngIf="registerForm.get('phoneNumber')?.errors?.['pattern']">Format: 10 digits.</small>
+        <small *ngIf="registerForm.get('phoneNumber')?.errors?.['required']">Debe ingresar un teléfono</small>
+        <small *ngIf="registerForm.get('phoneNumber')?.errors?.['pattern']">Formato: 10 dígitos.</small>
       </div>
     </div>
 
     <div>
-      <label>Password</label>
+      <label>Contraseña</label>
       <input formControlName="password" type="password"/>
       <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
-        <small *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</small>
-        <small *ngIf="registerForm.get('password')?.errors?.['minlength']">Minimum 6 characters.</small>
+        <small *ngIf="registerForm.get('password')?.errors?.['required']">Debe ingresar una contraseña.</small>
+        <small *ngIf="registerForm.get('password')?.errors?.['minlength']">Mínimo 6 caracteres.</small>
       </div>
     </div>
 

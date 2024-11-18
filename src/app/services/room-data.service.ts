@@ -16,8 +16,8 @@ export class RoomDataService {
     return this.http.post<Room>(`${this.apiUrl}`, room);
   }
 
-  getRooms(): Promise<Room[] | undefined> {
-    return this.http.get<Room[]>(`${this.apiUrl}`).toPromise();
+  getRooms(): Observable<Room[] | undefined> {
+    return this.http.get<Room[]>(`${this.apiUrl}`);
   }
 
   getRoomById(id: string): Observable<Room[]> {
@@ -30,13 +30,4 @@ export class RoomDataService {
       catchError(() => of(false))
     )
   }
-
-  updateRoom(id: number, room: Room): Observable<Room> {
-    return this.http.put<Room>(`${this.apiUrl}?id=${id}`, room);
-  }
-
-  deleteRoom(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}?id=${id}`);
-  }
-
 }

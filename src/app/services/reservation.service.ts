@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Reservation } from '../models/reservation.model';
 import {ReservationDataService} from './reservation-data.service';
 import {UserService} from './user.service';
+import {map, Observable} from 'rxjs';
+import {CustomValidators} from '../validators/custom-validators';
 
 @Injectable({
   providedIn: 'root'
@@ -49,10 +51,17 @@ export class ReservationService {
     return reservations;
   }
 
-  async getReservations(): Promise<Reservation[] | undefined> {
-    const foundReservations = await this.reservationDataService.getReservations();
-    if (foundReservations) foundReservations.forEach(reservation => this.setLocalDate(reservation));
-    return foundReservations;
+  getMatchingReservationIds(checkIn: Date, checkOut: Date): Observable<String[]> {
+    return this.reservationDataService.getReservations().pipe(
+      map(reservations =>
+        reservations ? reservations
+            .filter(reservation => checkIn <= reservation.checkOutDate)
+            .filter(reservation => reservation.checkInDate <= checkOut)
+            .map(reservation => reservation.roomId)
+            .filter(roomId => roomId !== undefined)
+          : []
+      )
+    );
   }
 
   async deleteReservation(id: string): Promise<void> {
