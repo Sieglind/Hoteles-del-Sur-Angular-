@@ -24,10 +24,7 @@ export class RoomDataService {
     return this.http.get<Room[]>(`${this.apiUrl}?id=${id}`);
   }
 
-  roomExists(id: string): Observable<boolean> {
-    return this.getRoomById(id).pipe(
-      map(rooms => rooms.length > 0),
-      catchError(() => of(false))
-    )
+  deleteRoom(roomId: string): Promise<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${roomId}`).toPromise();
   }
 }

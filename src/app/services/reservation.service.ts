@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Reservation } from '../models/reservation.model';
+import {Injectable} from '@angular/core';
+import {Reservation} from '../models/reservation.model';
 import {ReservationDataService} from './reservation-data.service';
 import {UserService} from './user.service';
 import {map, Observable} from 'rxjs';
-import {CustomValidators} from '../validators/custom-validators';
+import {User} from '../models/user.model';
+import {Room} from '../models/room.model';
+import {EmailService} from './email.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,17 +15,18 @@ export class ReservationService {
   private apiUrl = 'http://localhost:3000';
 
   constructor(
-    private http: HttpClient,
     private reservationDataService: ReservationDataService,
-    private userService: UserService
+    private userService: UserService,
+    private emailService: EmailService,
   ) {}
 
-  async createReservation(reservation: Reservation): Promise<string | undefined> {
-    let userId : string | undefined = this.userService.getUserId();
-    if (userId) {
-      reservation.userId = userId;
-      let createdReservation : Reservation | undefined = await this.reservationDataService.createReservation(reservation);
+  async createReservation(reservation: Reservation, room: Room): Promise<string | undefined> {
+    let user: User | null = this.userService.getUserData();
+    if (user) {
+      reservation.userId = user.id;
+      let createdReservation: Reservation | undefined = await this.reservationDataService.createReservation(reservation);
       if (createdReservation) {
+        this.emailService.sendNotificationMail(user,createdReservation,room);
         return createdReservation.id;
       } else {
         throw new Error("Error creating reservation");
@@ -39,9 +41,9 @@ export class ReservationService {
   }
 
   async getUserReservations(): Promise<Reservation[] | undefined> {
-    let userId : string | undefined = this.userService.getUserId();
-    let reservations : Reservation[] = [];
-    if(userId){
+    let userId: string | undefined = this.userService.getUserId();
+    let reservations: Reservation[] = [];
+    if (userId) {
       const foundReservations = await this.reservationDataService.getUserReservations(userId);
       if (foundReservations) {
         foundReservations.forEach(reservation => this.setLocalDate(reservation))

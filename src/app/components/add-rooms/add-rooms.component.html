@@ -1,56 +1,62 @@
-<div class="room-container">
-  <h2>Añadir Habitación</h2>
-  <form (ngSubmit)="onSubmit()" [formGroup]="roomForm" novalidate class="room-form">
-    <div class="form-group">
-      <label for="roomNumber">Número</label>
-      <input type="number" id="roomNumber" formControlName="roomNumber" class="form-control"/>
-      <div *ngIf="roomForm.get('roomNumber')?.hasError('required') && roomForm.get('roomNumber')?.touched" class="error">
-        El número de habitacion es obligatorio.
-      </div>
-      <div *ngIf="roomForm.get('roomNumber')?.hasError('roomExists') && roomForm.get('roomNumber')?.touched" class="error">
-        Esa habitacion ya existe
-      </div>
-    </div>
+<body>
+  <div class="room-container">
+    <h3>Añadir Habitación</h3>
+    <form (ngSubmit)="onSubmit()" [formGroup]="roomForm" novalidate>
 
-    <div class="form-group">
-      <label for="type">Tipo</label>
-      <select id="type" formControlName="type" required class="form-control">
-        <option value="" disabled selected>Seleccione el tipo de habitación</option>
-        <option value="Single">Single</option>
-        <option value="Double">Double</option>
-        <option value="Suite">Suite</option>
-      </select>
-      <div *ngIf="roomForm.get('type')?.invalid && roomForm.get('type')?.touched" class="error">
-        El tipo de habitación es obligatorio.
+      <div class="form-group">
+        <label for="id">Número</label>
+        <input type="text" id="id" formControlName="id" class="form-control"/>
+        <div *ngIf="roomForm.get('id')?.invalid && roomForm.get('id')?.touched" class="error">
+          El número de habitación es obligatorio.
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="capacity">Capacidad</label>
-      <input type="number" id="capacity" formControlName="capacity" required class="form-control" min="1"/>
-      <div *ngIf="roomForm.get('capacity')?.invalid && roomForm.get('capacity')?.touched" class="error">
-        La capacidad es obligatoria.
+      <div class="form-group">
+        <label for="type">Tipo</label>
+        <select id="type" formControlName="type" required class="form-control">
+          <option value="" disabled selected>Seleccione el tipo de habitación</option>
+          <option value="Single">Single</option>
+          <option value="Double">Double</option>
+          <option value="Suite">Suite</option>
+        </select>
+        <div *ngIf="roomForm.get('type')?.invalid && roomForm.get('type')?.touched" class="error">
+          El tipo de habitación es obligatorio.
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="pricePerNight">Precio por Noche</label>
-      <input type="text" id="pricePerNight" formControlName="pricePerNight" required class="form-control"/>
-      <div *ngIf="roomForm.get('pricePerNight')?.invalid && roomForm.get('pricePerNight')?.touched" class="error">
-        El precio por noche es obligatorio.
+      <div formGroupName="details">
+
+        <div class="form-group">
+          <label for="capacity">Capacidad</label>
+          <input type="number" id="capacity" formControlName="capacity" required class="form-control" min="1"/>
+          <div *ngIf="roomForm.get('details.capacity')?.invalid && roomForm.get('details.capacity')?.touched" class="error">
+            La capacidad es obligatoria.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="pricePerNight">Precio por Noche</label>
+          <input type="number" id="pricePerNight" formControlName="pricePerNight" required class="form-control"/>
+          <div *ngIf="roomForm.get('details.pricePerNight')?.invalid && roomForm.get('details.pricePerNight')?.touched" class="error">
+            El precio por noche es obligatorio.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="imageUrl">URL de la Imagen</label>
+          <input type="url" id="imageUrl" formControlName="imageUrl" class="form-control"/>
+          <div *ngIf="roomForm.get('details.imageUrl')?.invalid && roomForm.get('details.imageUrl')?.touched" class="error">
+            La URL de la imagen debe ser válida.
+          </div>
+        </div>
+
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="imageUrl">URL de la Imagen</label>
-      <input type="url" id="imageUrl" formControlName="imageUrl" class="form-control"/>
-      <div *ngIf="roomForm.get('imageUrl')?.invalid && roomForm.get('imageUrl')?.touched" class="error">
-        La URL de la imagen debe ser válida y provenir de Pexels.
-      </div>
-    </div>
+      <button type="submit" class="btn btn-primary" [disabled]="roomForm.invalid">Añadir Habitación</button>
+    </form>
 
-    <button type="submit" [disabled]="roomForm.invalid">
-      Añadir Habitación
-    </button>
-  </form>
-</div>
+    <div *ngIf="successMessage" class="success-message">
+      Habitación creada con éxito.
+    </div>
+  </div>
+</body>

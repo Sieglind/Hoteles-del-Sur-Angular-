@@ -12,6 +12,8 @@ import { ServiceFormComponent } from './components/service-form/service-form.com
 import {AddRoomsComponent } from './components/add-rooms/add-rooms.component';
 import { ViewServiceComponent } from './components/view-service/view-service.component';
 import { ServiceListComponent } from './components/service-list/service-list.component';
+import { ViewRoomComponent } from './components/view-room/view-room.component';
+import { RoomListComponent } from './components/room-list/room-list.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -26,7 +28,9 @@ const routes: Routes = [
   {path: 'services/:id', component: ViewServiceComponent},
   {path: 'profile' , component: ProfileComponent},
   {path: 'contact', component: ContactComponent},
-  {path: 'rooms/add', component: AddRoomsComponent},
+  {path: 'rooms/list', component: RoomListComponent},
+  {path: 'rooms/list/add', component: AddRoomsComponent},
+  {path: 'rooms/:id', component: ViewRoomComponent},
 ];
 
 @NgModule({

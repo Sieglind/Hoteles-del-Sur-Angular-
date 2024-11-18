@@ -1,0 +1,16 @@
+<div *ngIf="room"  class="room-container">
+    <div class="room-card">
+      <div class="room-content">
+        <div class="room-text">
+          <p><strong>ID:</strong> {{ room.id }}</p>
+          <p><strong>Tipo:</strong> {{ room.type }}</p>
+          <p><strong>Capacidad:</strong> {{ room.details.capacity}} </p>
+          <p><strong>Precio por Noche:</strong> {{ room.details.pricePerNight }}</p>
+        </div>
+        <div class="room-image-container">
+          <img [src]="room.details.imageUrl" alt="Imagen de la habitación" class="room-image"/>
+        </div>
+      </div>
+      <button (click)="goToRooms()" class="back-button">Volver a Habitaciones</button>
+    </div>
+</div>  

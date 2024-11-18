@@ -16,6 +16,7 @@ import {CustomValidators} from '../../validators/custom-validators';
 export class ReservationFormComponent implements OnInit {
   reservationForm: FormGroup;
   rooms: Room[] = [];
+  selectedRoom : Room | undefined;
   reservation : Reservation | undefined;
 
   constructor(
@@ -46,8 +47,11 @@ export class ReservationFormComponent implements OnInit {
   }
 
   async onSubmit(): Promise<void> {
-    if (this.reservationForm.valid) {
-      let id: string | undefined = await this.reservationService.createReservation(this.reservationForm.value);
+    if (this.reservationForm.valid && this.selectedRoom) {
+      let id: string | undefined = await this.reservationService.createReservation(
+        this.reservationForm.value,
+        this.selectedRoom
+      );
       if (id) {
         await this.router.navigateByUrl(`/reservations/${id}`);
       }
@@ -56,7 +60,8 @@ export class ReservationFormComponent implements OnInit {
     }
   }
 
-  selectRoom(roomId: string): void {
-    this.reservationForm.patchValue({roomId: roomId});
+  selectRoom(room: Room): void {
+    this.reservationForm.patchValue({roomId: room.id});
+    this.selectedRoom = room;
   }
 }

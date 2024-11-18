@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {RoomDataService} from '../../services/room-data.service';
 import {CustomValidators} from '../../validators/custom-validators';
-import {RoomService} from '../../services/room.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -12,26 +13,33 @@ import {RoomService} from '../../services/room.service';
 export class AddRoomsComponent {
 
   roomForm: FormGroup;
+  successMessage: boolean = false;
 
   constructor(
     private fb: FormBuilder,
-    private roomService: RoomService,
+    private roomDataService: RoomDataService,
+    private router: Router
   ) {
     this.roomForm = this.fb.group({
-      roomNumber: ['', Validators.required, CustomValidators.roomExists(this.roomService)],
+      id: ['', Validators.required],
       type: ['', Validators.required],
-      capacity: ['', [Validators.required, Validators.min(1), Validators.max(4)]],
-      pricePerNight: ['', [Validators.required, Validators.min(0)]],
-      imageUrl: ['', [Validators.required, CustomValidators.imageUrlValidator()]]
+      details: this.fb.group({
+        capacity: ['', [Validators.required, Validators.min(1), Validators.max(4)]],
+        pricePerNight: ['', [Validators.required, Validators.min(0)]],
+        available: [true],
+        imageUrl: ['', [Validators.required, CustomValidators.imageUrlValidator()]]
+      })
     });
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.roomForm.valid) {
-      this.roomService.createRoom(this.roomForm.value).subscribe(
-        room => room ? console.log("success") : console.log("error"),
-        error => console.error('Error al añadir la habitación:', error)
-      );
+      this.roomDataService.createRoom(this.roomForm.value).subscribe(
+        (createdRoom) => {
+          this.successMessage = true;
+          setTimeout(() => this.successMessage = false, 3000);
+          this.router.navigateByUrl(`/rooms/${createdRoom.id}`);
+        }, (error) => console.error('Error al añadir la habitación:', error));
     } else {
       console.log('El formulario es inválido');
     }
