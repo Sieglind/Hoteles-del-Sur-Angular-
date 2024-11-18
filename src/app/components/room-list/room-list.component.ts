@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { RoomDataService } from '../../services/room-data.service';
+import {Component, OnInit} from '@angular/core';
+import {RoomDataService} from '../../services/room-data.service';
 import {MatDialog} from '@angular/material/dialog';
-import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import {ConfirmationDialogComponent} from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-room-list',
@@ -14,8 +14,8 @@ export class RoomListComponent implements OnInit {
 
   constructor(
     private roomService: RoomDataService,
-    public dialog: MatDialog) 
-  {}
+    public dialog: MatDialog) {
+  }
 
   async ngOnInit(): Promise<void> {
     await this.getRooms();
@@ -25,7 +25,7 @@ export class RoomListComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '400px',
       height: '200px',
-      data: { roomId }
+      data: {roomId}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -33,7 +33,7 @@ export class RoomListComponent implements OnInit {
         this.cancelRoom(roomId);
       }
     });
-  
+
   }
 
   async cancelRoom(roomId: string): Promise<void> {
@@ -41,18 +41,8 @@ export class RoomListComponent implements OnInit {
     await this.getRooms()
   }
 
-  // async cancelRoom(roomId: string): Promise<void> {
-  //   try { 
-  //     await this.roomService.deleteRoom(roomId).toPromise();
-  //     await this.getRooms(); 
-  //   } catch (error) { 
-  //     console.error('Error al eliminar la habitación:', error); 
-  //   }
-  // }
-
   async getRooms(): Promise<void> {
-    const rooms = await this.roomService.getRooms();
-    if (rooms) this.rooms = rooms;
+    const rooms = this.roomService.getRooms().subscribe(rooms => rooms ? this.rooms = rooms : []);
   }
 
 }
