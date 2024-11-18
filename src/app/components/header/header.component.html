@@ -5,7 +5,7 @@
       <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav me-auto">
           <li class="nav-item"><a class="nav-link" (click)="goHome()">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" [routerLink]="['services']">Services</a></li>
+          <li class="nav-item"><a class="nav-link" [routerLink]="['services']">Servicios</a></li>
           <li class="nav-item"><a class="nav-link" [routerLink]= "['contact']">Contacto</a></li>
         </ul>
         <div *ngIf="userIsLoggedIn(); then loggedInOptions else authOptions"></div>
@@ -15,7 +15,7 @@
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
                 <div class="dropdown nav-link">
-                  <button class="dropdown-button">Backoffice</button>
+                  <button class="dropdown-button">Oficina Administrativa</button>
                   <div class="dropdown-content">
                     <a href="#">Reservas</a>
                     <a [routerLink]="['services/list']" >Servicios</a>
@@ -23,21 +23,21 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item"><a class="nav-link" (click)="logout()">Logout</a></li>
+              <li class="nav-item"><a class="nav-link" (click)="logout()">Cerrar Sesión</a></li>
             </ul>
           </ng-template>
           <ng-template #userOptions>
             <ul class="navbar-nav ms-auto">
-              <li class="nav-item"><a class="nav-link" [routerLink]="['profile']">Profile</a></li>
-              <li class="nav-item"><a class="nav-link" [routerLink]="['reservations']">My Reservations</a></li>
-              <li class="nav-item"><a class="nav-link" (click)="logout()">Logout</a></li>
+              <li class="nav-item"><a class="nav-link" [routerLink]="['profile']">Mi perfil</a></li>
+              <li class="nav-item"><a class="nav-link" [routerLink]="['reservations']">Mis reservas</a></li>
+              <li class="nav-item"><a class="nav-link" (click)="logout()">Cerrar Sesión</a></li>
             </ul>
           </ng-template>
         </ng-template>
         <ng-template #authOptions>
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" [routerLink]="['register']">Registrar</a></li>
-            <li class="nav-item"><a class="nav-link" [routerLink]="['login']">Login</a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['register']">Registrarse</a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['login']">Iniciar Sesión</a></li>
           </ul>
         </ng-template>
       </div>
