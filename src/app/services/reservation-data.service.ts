@@ -21,8 +21,8 @@ export class ReservationDataService {
     return this.http.get<Reservation>(`${this.apiUrl}/reservations/${reservationId}`).toPromise();
   }
 
-  getReservations(): Promise<Reservation[] | undefined> {
-    return this.http.get<Reservation[]>(`${this.apiUrl}/reservations`).toPromise();
+  getReservations(): Observable<Reservation[] | undefined> {
+    return this.http.get<Reservation[]>(`${this.apiUrl}/reservations`);
   }
 
   getUserReservations(reservationId: string): Promise<Reservation[] | undefined> {

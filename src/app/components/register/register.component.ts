@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../services/user.service';
 import {CustomValidators} from '../../validators/custom-validators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,8 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.registerForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2)]],
@@ -33,6 +35,7 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       try {
         this.userService.register(this.registerForm.value);
+        this.router.navigate(['login']);
       } catch (error) {
         this.registerError = true;
       }

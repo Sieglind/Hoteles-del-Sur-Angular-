@@ -16,6 +16,7 @@ import {CustomValidators} from '../../validators/custom-validators';
 export class ReservationFormComponent implements OnInit {
   reservationForm: FormGroup;
   rooms: Room[] = [];
+  selectedRoom : Room | undefined;
   reservation : Reservation | undefined;
 
   constructor(
@@ -34,17 +35,23 @@ export class ReservationFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  async onCheckAvailability(): Promise<void> {
+  onCheckAvailability() {
     if (this.reservationForm.valid){
-      this.rooms = await this.availabilityService.getAvailableRooms(this.reservationForm.value);
+      this.availabilityService.getAvailableRooms(this.reservationForm.value).subscribe(
+        rooms => this.rooms = rooms,
+        error => console.log(error)
+      )
     } else {
       console.log("Form invalido")
     }
   }
 
   async onSubmit(): Promise<void> {
-    if (this.reservationForm.valid && this.reservation) {
-      let id: string | undefined = await this.reservationService.createReservation(this.reservation);
+    if (this.reservationForm.valid && this.selectedRoom) {
+      let id: string | undefined = await this.reservationService.createReservation(
+        this.reservationForm.value,
+        this.selectedRoom
+      );
       if (id) {
         await this.router.navigateByUrl(`/reservations/${id}`);
       }
@@ -53,7 +60,8 @@ export class ReservationFormComponent implements OnInit {
     }
   }
 
-  selectRoom(roomId: string): void {
-    if (this.reservation) this.reservation.roomId = roomId;
+  selectRoom(room: Room): void {
+    this.reservationForm.patchValue({roomId: room.id});
+    this.selectedRoom = room;
   }
 }
