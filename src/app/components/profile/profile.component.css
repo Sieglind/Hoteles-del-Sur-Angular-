@@ -2,16 +2,21 @@
   background-color: #2f2f2f;
   color: white;
   border-radius: 15px;
-  padding: 30px;
+  padding: 40px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   margin-bottom: 20px;
-  max-width: 500px;
+  max-width: 650px;
   margin-left: auto;
   margin-right: auto;
-  text-align: center;
+  text-align: left;
+  margin-top: 50px;
 }
 
+.profile-section p i {
+  margin-right: 15px; 
+  color: #3498db; 
+}
 .profile-section:hover {
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
   transform: translateY(-5px);
@@ -83,4 +88,5 @@
   .btn-back {
     font-size: 0.9rem;
   }
+
 }

@@ -1,13 +1,12 @@
 <div class="profile-section" *ngIf="userData">
     <h2>Perfil del Usuario</h2>
-    <p><strong>Nombre:</strong> {{ userData.firstName }} {{ userData.lastName }}</p>
-    <p><strong>Correo Electrónico:</strong> {{ userData.email }}</p>
-    <p><strong>Teléfono:</strong> {{ userData.phoneNumber }}</p>
-
-    <div class="button-container"> <button class="btn-back" (click)="goBack()">Volver</button></div>
-
-</div>
-
-<div class="profile-section" *ngIf="!userData">
+    <p><i class="fas fa-user"></i> Nombre: {{ userData.firstName }} {{ userData.lastName }}</p>
+    <p><i class="fas fa-envelope"></i> Correo Electrónico: {{ userData.email }}</p>
+    <p><i class="fas fa-phone-alt"></i> Teléfono: {{ userData.phoneNumber }}</p>
+  
+  </div>
+  
+  <div class="profile-section" *ngIf="!userData">
     <p class="no-user-message">No se ha encontrado información de usuario. Es posible que no hayas iniciado sesión.</p>
-</div>
+  </div>
+  

@@ -1,55 +1,62 @@
 .container {
-  padding-top: 50px;
+  padding-top: 30px;
   padding-bottom: 50px;
+  max-width: 1700px;
 }
 
 .card {
-  background-color: #2f2f2f; 
-  color: white; 
-  border-radius: 15px; 
-  padding: 30px; 
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
-  transition: all 0.3s ease; 
+  background-color: #2f2f2f;
+  color: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+.container p i {
+  margin-right: 15px;  /* Aumenté el espacio entre el ícono y el texto */
+  color: #3498db; /* Cambia el color si es necesario */
 }
 
 .card:hover {
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); 
-  transform: translateY(-5px); 
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
 }
 
 .card-body {
-  padding: 20px; 
+  padding: 20px;
 }
 
 .card-title {
-  font-size: 1.5rem; 
+  font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 15px; 
+  margin-bottom: 15px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 .card-text {
-  font-size: 1rem; 
-  margin-bottom: 10px; 
+  font-size: 1rem;
+  margin-bottom: 10px;
 }
 
 .card-text i {
-  margin-right: 10px; 
+  margin-right: 10px;
 }
 
 .text-white {
-  color: #ffffff !important; 
+  color: #ffffff !important;
 }
 
 a {
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline; 
+  text-decoration: underline;
 }
 
 @media (max-width: 767px) {
   .card {
-    padding: 20px; 
+    padding: 20px;
   }
 }
