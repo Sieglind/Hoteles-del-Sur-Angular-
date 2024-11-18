@@ -35,6 +35,8 @@ import { AddRoomsComponent } from './components/add-rooms/add-rooms.component';
 import { ViewServiceComponent } from './components/view-service/view-service.component';
 import { CommonModule } from '@angular/common';
 import { ServiceListComponent } from './components/service-list/service-list.component';
+import { ViewRoomComponent } from './components/view-room/view-room.component';
+import { RoomListComponent } from './components/room-list/room-list.component';
 
 
 @NgModule({
@@ -60,6 +62,8 @@ import { ServiceListComponent } from './components/service-list/service-list.com
     AddRoomsComponent,
     ViewServiceComponent,
     ServiceListComponent,
+    ViewRoomComponent,
+    RoomListComponent,
   ],
   imports: [
     BrowserModule,
