@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReservationService } from '../../services/reservation.service';
 import { Reservation } from '../../models/reservation.model';
 import { ReservationDataService } from '../../services/reservation-data.service';
+import { CustomValidators } from '../../validators/custom-validators';
 
 @Component({
   selector: 'app-reservation-edit',
@@ -13,6 +14,9 @@ import { ReservationDataService } from '../../services/reservation-data.service'
 export class ReservationEditComponent implements OnInit {
   editForm!: FormGroup;
   reservationId: string | null = null;
+  roomId: string | undefined;
+  userId: string | undefined;
+  reservation: Reservation | undefined;
   reservations: any[] = [];
   errorMessage: string | undefined;
 
@@ -26,23 +30,24 @@ export class ReservationEditComponent implements OnInit {
     
   ) {
       this.editForm = this.fb.group({
-      id:[{ value: '', disabled: true }, Validators.required],
+      id:new FormControl(this.reservationId),
       checkInDate: ['', [Validators.required, CustomValidators.checkInValidator()]],
       checkOutDate: ['', [Validators.required, CustomValidators.checkOutValidator()]],
       guests: ['',[Validators.required, Validators.min(1), Validators.max(4)]],
-      roomId: [{ value: '', disabled: true }, Validators.required],
-      userId: 
+      roomId: new FormControl(this.roomId),
+      userId: new FormControl(this.userId)
   });
 }
 
 async ngOnInit(): Promise<void> {
   this.reservationId = this.route.snapshot.paramMap.get('id');
-
   if (this.reservationId) {
     try {
       const reservation = await this.reservationService.getReservation(this.reservationId);
       if (reservation) {
-        this.editForm.patchValue(reservation);
+        console.log(reservation);
+        this.roomId = reservation.roomId;
+        this.userId = reservation.userId;
       } else {
         console.error('Reserva no encontrada.');
       }
@@ -54,7 +59,9 @@ async ngOnInit(): Promise<void> {
 
   onSubmit():void{
     if(this.editForm.valid && this.reservationId){
+      console.log(this.editForm.value);
       const reservationData = {...this.editForm.value, id:this.reservationId};
+      console.log(reservationData);
       this.reservationDataService.updateReservation(reservationData).subscribe(
         ()=> this.router.navigate(['reservations/list']),
         (error)=> console.error('Error al actualizar la reserva: ',error)

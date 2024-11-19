@@ -7,27 +7,27 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ReservationDataService {
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'http://localhost:3000/reservations';
 
   constructor(private http: HttpClient) {}
 
   createReservation(reservationData: Reservation): Promise<Reservation | undefined> {
-    return this.http.post<Reservation | undefined>(`${this.apiUrl}/reservations`, reservationData).toPromise();
+    return this.http.post<Reservation | undefined>(`${this.apiUrl}`, reservationData).toPromise();
   }
 
   getReservationById(reservationId: string): Promise<Reservation | undefined> {
     if (!reservationId || isNaN(Number(reservationId))) {
       throw new Error("Invalid reservation ID");
     }
-    return this.http.get<Reservation>(`${this.apiUrl}/reservations/${reservationId}`).toPromise();
+    return this.http.get<Reservation>(`${this.apiUrl}/${reservationId}`).toPromise();
   }
 
   getReservations(): Observable<Reservation[] | undefined> {
-    return this.http.get<Reservation[]>(`${this.apiUrl}/reservations`);
+    return this.http.get<Reservation[]>(`${this.apiUrl}`);
   }
 
   getUserReservations(userId: string): Promise<Reservation[] | undefined> {
-    return this.http.get<Reservation[]>(`${this.apiUrl}/reservations?userId=${userId}`).toPromise();
+    return this.http.get<Reservation[]>(`${this.apiUrl}?userId=${userId}`).toPromise();
   }
 
   updateReservation(reservation : Reservation ): Observable <void> {
@@ -38,6 +38,6 @@ export class ReservationDataService {
     if (!reservationId || isNaN(Number(reservationId))) {
       throw new Error("Invalid reservation ID");
     }
-    return this.http.delete<void>(`${this.apiUrl}/reservations/${reservationId}`).toPromise();
+    return this.http.delete<void>(`${this.apiUrl}/${reservationId}`).toPromise();
   }
 }

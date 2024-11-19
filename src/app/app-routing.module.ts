@@ -23,7 +23,6 @@ const routes: Routes = [
   {path: 'reservations', component: MyReservationsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'reservations/:id', component: ReservationComponent},
   {path: 'services', component: ServicesComponent},
   {path: 'services/list', component: ServiceListComponent},
   {path: 'services/list/add', component: ServiceFormComponent},
