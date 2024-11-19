@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Reservation } from '../models/reservation.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,16 +30,8 @@ export class ReservationDataService {
     return this.http.get<Reservation[]>(`${this.apiUrl}/reservations?userId=${userId}`).toPromise();
   }
 
-  async updateReservation(reservationId: string, reservation: Partial<Reservation>): Promise<void> {
-    if (!reservationId || isNaN(Number(reservationId))) {
-      throw new Error("Invalid reservation ID");
-    }
-    try {
-      await this.http.put<void>(`${this.apiUrl}/reservations/${reservationId}`, reservation).toPromise();
-    } catch (error) {
-      console.error('Error al actualizar la reserva en la API:', error);
-      throw error;
-    }
+  updateReservation(reservation : Reservation ): Observable <void> {
+    return this.http.put<void>(`${this.apiUrl}/${reservation.id}`,reservation);
   }
 
   deleteReservation(reservationId: string): Promise<void> {

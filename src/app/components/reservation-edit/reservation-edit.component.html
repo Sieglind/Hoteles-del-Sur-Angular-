@@ -1,6 +1,12 @@
 <div class="reservation-edit-container">
   <h2>Editar Reserva</h2>
-  <form (ngSubmit)="onSave()" [formGroup]="editForm" novalidate class="reservation-edit-form">
+  <form (ngSubmit)="onSubmit()" [formGroup]="editForm" novalidate>
+
+    <div class="form-group">
+      <label for="id">Número</label>
+      <input type="text" id="id" formControlName="id" class="form-control"/>
+    </div>
+
     <div class="form-group">
       <label for="checkInDate">Fecha de Check-In</label>
       <input type="date" id="checkInDate" formControlName="checkInDate" required class="form-control" />
@@ -15,6 +21,21 @@
       <div *ngIf="editForm.get('checkOutDate')?.invalid && editForm.get('checkOutDate')?.touched" class="error">
         La fecha de check-out es obligatoria.
       </div>
+    </div>
+
+    <div class="form-group">
+      <label for="guests">Huespedes</label>
+      <input type="text" id="guests" formControlName="guests" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+      <label for="roomId">Número Habitación</label>
+      <input type="text" id="roomId" formControlName="roomId" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+      <label for="userId">Número Usuario</label>
+      <input type="text" id="userId" formControlName="userId" class="form-control"/>
     </div>
 
     <div class="actions">

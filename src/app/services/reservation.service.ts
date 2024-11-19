@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Reservation } from '../models/reservation.model';
 import { ReservationDataService } from './reservation-data.service';
 import { UserService } from './user.service';
-import { lastValueFrom } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +39,7 @@ export class ReservationService {
     }
     return await this.reservationDataService.getReservationById(reservationId);
   }
-
+  
   async getUserReservations(): Promise<Reservation[] | undefined> {
     const userId = this.userService.getUserId();
     let reservations: Reservation[] = [];
@@ -65,19 +65,7 @@ export class ReservationService {
     }
     await this.reservationDataService.deleteReservation(id);
   }
-
-  async updateReservation(reservationId: string, reservation: Partial<Reservation>): Promise<void> {
-    if (!reservationId || isNaN(Number(reservationId))) {
-      throw new Error("Invalid reservation ID");
-    }
-    try {
-      await this.reservationDataService.updateReservation(reservationId, reservation);
-    } catch (error) {
-      console.error('Error al actualizar la reserva:', error);
-      throw error; 
-    }
-  }
-
+  
   fetchReservations(): Promise<Reservation[]> {
     return lastValueFrom(
       this.http.get<Reservation[]>(`${this.apiUrl}/reservations`)
