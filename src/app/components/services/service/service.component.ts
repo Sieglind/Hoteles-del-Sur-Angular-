@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PexelService} from '../../../services/pexel.service';
+import {PexelsService} from '../../../services/pexels.service';
 import {Photo} from 'pexels';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {EventBusService} from '../../../services/event-bus.service';
@@ -20,7 +20,7 @@ export class ServiceComponent implements OnInit {
   currentVideoSlide = 0;
 
   constructor(
-    private pexeService: PexelService,
+    private pexeService: PexelsService,
     private sanitizer: DomSanitizer,
     private eventBusService: EventBusService
   ) {

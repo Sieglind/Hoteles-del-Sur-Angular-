@@ -73,6 +73,18 @@
   background-color: #1f6697;
 }
 
+.room-btn-unavailable {
+  background-color: #932222FF;
+  color: #ffffff;
+  border-color: #932222FF;
+  cursor: not-allowed;
+}
+
+.room-btn-unavailable:hover {
+  background-color: #932222FF;
+}
+
+
 .btn-primary:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
@@ -119,4 +131,9 @@
 
 .room-card .btn {
   margin-top: 0.5rem;
+}
+
+.grayscale {
+  filter: grayscale(100%);
+  opacity: 0.5;
 }

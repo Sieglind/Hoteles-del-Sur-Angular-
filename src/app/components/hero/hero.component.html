@@ -1,4 +1,7 @@
-<section id="hero" class="jumbotron text-center">
+<section 
+  id="hero" 
+  class="jumbotron text-center" 
+  [ngClass]="{'shrink': !currentUrlIsHome()}">
   <div class="container">
     <h1 class="display-4">Bienvenidos a Hoteles del Sur</h1><br>
     <p class="lead">Una experiencia única y memorable</p><br>

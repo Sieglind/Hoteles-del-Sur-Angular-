@@ -1,9 +1,12 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Reservation } from '../models/reservation.model';
-import { ReservationDataService } from './reservation-data.service';
-import { UserService } from './user.service';
-import { lastValueFrom, Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Reservation} from '../models/reservation.model';
+import {ReservationDataService} from './reservation-data.service';
+import {UserService} from './user.service';
+import {lastValueFrom, map, Observable} from 'rxjs';
+import {Room} from '../models/room.model';
+import {User} from '../models/user.model';
+import {EmailService} from './email.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,23 +15,26 @@ export class ReservationService {
   private apiUrl = 'http://localhost:3000';
 
   constructor(
-    private http: HttpClient,
     private reservationDataService: ReservationDataService,
-    private userService: UserService
-  ) {}
+    private userService: UserService,
+    private emailService: EmailService,
+    private http: HttpClient
+  ) {
+  }
 
-  async createReservation(reservation: Reservation): Promise<string | undefined> {
-    const userId = this.userService.getUserId();
-    if (userId) {
-      reservation.userId = userId;
-      const createdReservation = await this.reservationDataService.createReservation(reservation);
+  async createReservation(reservation: Reservation, room: Room): Promise<string | undefined> {
+    let user: User | null = this.userService.getUserData();
+    if (user) {
+      reservation.userId = user.id;
+      let createdReservation: Reservation | undefined = await this.reservationDataService.createReservation(reservation);
       if (createdReservation) {
+        this.emailService.sendNotificationMail(user, createdReservation, room);
         return createdReservation.id;
       } else {
         throw new Error("Error creating reservation");
       }
     } else {
-      throw new Error("User ID is not available");
+      throw new Error("Error creating reservation");
     }
   }
 
@@ -39,9 +45,9 @@ export class ReservationService {
     }
     return await this.reservationDataService.getReservationById(reservationId);
   }
-  
+
   async getUserReservations(): Promise<Reservation[] | undefined> {
-    const userId = this.userService.getUserId();
+    let userId: string | undefined = this.userService.getUserId();
     let reservations: Reservation[] = [];
     if (userId) {
       const foundReservations = await this.reservationDataService.getUserReservations(userId);
@@ -53,10 +59,17 @@ export class ReservationService {
     return reservations;
   }
 
-  async getReservations(): Promise<Reservation[] | undefined> {
-    const foundReservations = await this.reservationDataService.getReservations();
-    if (foundReservations) foundReservations.forEach(reservation => this.setLocalDate(reservation));
-    return foundReservations;
+  getMatchingReservationIds(checkIn: Date, checkOut: Date): Observable<String[]> {
+    return this.reservationDataService.getReservations().pipe(
+      map(reservations =>
+        reservations ? reservations
+            .filter(reservation => checkIn <= reservation.checkOutDate)
+            .filter(reservation => reservation.checkInDate <= checkOut)
+            .map(reservation => reservation.roomId)
+            .filter(roomId => roomId !== undefined)
+          : []
+      )
+    );
   }
 
   async deleteReservation(id: string): Promise<void> {
@@ -65,14 +78,14 @@ export class ReservationService {
     }
     await this.reservationDataService.deleteReservation(id);
   }
-  
+
   fetchReservations(): Promise<Reservation[]> {
     return lastValueFrom(
       this.http.get<Reservation[]>(`${this.apiUrl}/reservations`)
     )
-    .then(reservations => 
-      reservations?.sort((a, b) => new Date(a.checkInDate).getTime() - new Date(b.checkInDate).getTime()) || []
-    );
+      .then(reservations =>
+        reservations?.sort((a, b) => new Date(a.checkInDate).getTime() - new Date(b.checkInDate).getTime()) || []
+      );
   }
 
   setLocalDate(reservation: Reservation): Reservation {

@@ -1,31 +1,62 @@
+.container {
+  padding-top: 30px;
+  padding-bottom: 50px;
+  max-width: 1700px;
+}
+
+.card {
+  background-color: #2f2f2f;
+  color: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+.container p i {
+  margin-right: 15px; 
+  color: #3498db; 
+}
+
+.card:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+}
+
 .card-body {
-    background-color: #343a40; 
-    padding: 20px;
-    border-radius: 10px; 
-  }
-  
-  .card-title {
-    margin-bottom: 20px;
-    font-weight: bold;
-    color: #ffffff; 
-  }
-  
-  .card-text i {
-    color: #ffffff; 
-    margin-right: 10px;
-    vertical-align: middle;
-  }
-  
-  h2.display-4 {
-    font-size: 2.5rem; 
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    color: #343a40; 
-  }
-  
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.card-text {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.card-text i {
+  margin-right: 10px;
+}
+
+.text-white {
+  color: #ffffff !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
   .card {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); 
+    padding: 20px;
   }
-  
+}

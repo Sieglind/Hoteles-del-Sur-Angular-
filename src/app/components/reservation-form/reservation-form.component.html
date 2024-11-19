@@ -5,16 +5,28 @@
       <div class="form-group">
         <label for="checkInDate">Check-In</label>
         <input type="date" id="checkInDate" formControlName="checkInDate" required class="form-control" />
-        <div *ngIf="reservationForm.get('checkInDate')?.invalid && reservationForm.get('checkInDate')?.touched" class="error">
-          La fecha de check-in es obligatoria.
+        <div *ngIf="reservationForm.get('checkInDate')?.invalid && reservationForm.get('checkInDate')?.touched"
+          class="error">
+          <div *ngIf="reservationForm.get('checkInDate')?.hasError('required')">
+            El campo es requerido
+          </div>
+          <div *ngIf="reservationForm.get('checkInDate')?.hasError('checkInInvalid')">
+            La fecha del check-in es invalida
+          </div>
         </div>
       </div>
 
       <div class="form-group">
         <label for="checkOutDate">Check-Out</label>
         <input type="date" id="checkOutDate" formControlName="checkOutDate" required class="form-control" />
-        <div *ngIf="reservationForm.get('checkOutDate')?.invalid && reservationForm.get('checkOutDate')?.touched" class="error">
-          La fecha de check-out es obligatoria.
+        <div *ngIf="reservationForm.get('checkOutDate')?.invalid && reservationForm.get('checkOutDate')?.touched"
+          class="error">
+          <div *ngIf="reservationForm.get('checkOutDate')?.hasError('required')">
+            El campo es requerido
+          </div>
+          <div *ngIf="reservationForm.get('checkOutDate')?.hasError('checkOutInvalid')">
+            La fecha del check-out es invalida
+          </div>
         </div>
       </div>
 
@@ -25,25 +37,26 @@
           Debe ingresar al menos 1 huésped.
         </div>
       </div>
-
-      <button type="button" (click)="onCheckAvailability()" class="btn btn-primary confirm-btn">Verificar disponibilidad</button>
+      <button type="button" (click)="onCheckAvailability()" class="btn btn-primary confirm-btn"
+        [disabled]="reservationForm.invalid">Verificar disponibilidad</button>
     </div>
 
-    <div *ngIf="availableRooms.length > 0" class="rooms-section">
+    <div *ngIf="rooms.length > 0" class="rooms-section">
       <br>
       <h2 class="rooms-title">Seleccionar habitación</h2>
       <div class="rooms-grid">
-        <div *ngFor="let room of availableRooms" class="room-card">
+        <div *ngFor="let room of rooms" class="room-card">
           <div class="room-details">
             <p>Tipo: {{ room.type }}</p>
             <p>Capacidad: {{ room.details.capacity }}</p>
             <p>Precio por noche: ${{ room.details.pricePerNight }}</p>
-            <img [src]= "room.details.imageUrl" alt="Image">
-            <button type="button"
-                    (click)="selectRoom(room.id)"
-                    [ngClass]="{'room-btn-success': reservation?.roomId === room.id, 'room-btn-secondary': reservation?.roomId !== room.id}"
-                    class="btn">
-              Seleccionar
+            <img [src]="room.details.imageUrl" alt="Image" [ngClass]="{'grayscale': !room.details.available}">
+            <button type="button" (click)="selectRoom(room)" [ngClass]="{
+                    'room-btn-success': reservationForm.get('roomId')?.value === room.id && room.details.available,
+                    'room-btn-secondary': reservation?.roomId !== room.id && room.details.available,
+                    'room-btn-unavailable': !room.details.available
+                    }" class="btn" [disabled]="!room.details.available">
+              {{ room.details.available ? 'Seleccionar' : 'Reservada' }}
             </button>
           </div>
         </div>
@@ -57,4 +70,3 @@
     </div>
   </form>
 </div>
-

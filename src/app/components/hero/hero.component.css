@@ -1,23 +1,35 @@
 #hero {
-    background-image: url('../../../assets/header-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    padding: 50px 0;
-    text-align: center;
-  }
-  
-  #hero h1, #hero p {
-    background: rgba(0, 0, 0, 0.5);
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 5px;
-  }
-  
-  #hero button {
-    margin-top: 20px;
-  }
+  background-image: url('../../../assets/pick.jpeg');
+  background-size: cover;
+  background-position: center bottom;
+  color: white;
+  padding: 200px 0;
+  text-align: center;
+  transition: all 0.5s ease-in-out;
+}
 
-  .display-4 {
-    font-size: 50px;
-  }
+#hero.shrink {
+  height: 250px;
+  padding: 30px;
+  background-position: center 15%;
+}
+
+#hero h1, #hero p {
+  background: rgba(0, 0, 0, 0.5);
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+#hero button {
+  margin-top: 20px;
+}
+
+.display-4 {
+  font-size: 50px;
+  transition: font-size 0.5s ease-in-out;
+}
+
+#hero.shrink .display-4 {
+  font-size: 30px;
+}

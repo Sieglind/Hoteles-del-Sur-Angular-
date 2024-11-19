@@ -1,0 +1,17 @@
+<div *ngIf="service" class="service-container">
+    <div class="service-card">
+      <div class="service-content">
+        <div class="service-text">
+          <p><strong>ID:</strong> {{ service.id }}</p>
+          <p><strong>Título:</strong> {{ service.title }}</p>
+          <p><strong>Subtítulo:</strong> {{ service.subtitle }}</p>
+          <p><strong>Descripción:</strong> {{ service.description }}</p>
+        </div>
+        <div class="service-image-container">
+          <img [src]="service.imageUrl" alt="Imagen del servicio" class="service-image"/>
+        </div>
+      </div>
+      <button (click)="goToServices()" class="back-button">Volver a Servicios</button>
+    </div>
+  </div>
+  

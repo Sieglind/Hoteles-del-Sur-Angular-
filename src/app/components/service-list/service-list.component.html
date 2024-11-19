@@ -1,0 +1,21 @@
+<div class="services-section">
+  <div class="title-and-button">
+    <h2 class="services-title">Lista de Servicios</h2>
+    <button mat-raised-button class="btn-add" [routerLink]="['/services/list/add']">Agregar</button>
+  </div>
+  <div *ngIf="services.length > 0" class="services-list">
+    <div *ngFor="let service of services" class="service-card">
+      <p><strong>ID:</strong> {{ service.id }}</p>
+      <p><strong>Titulo:</strong> {{ service.title }}</p>
+      <p><strong>Subtitulo:</strong> {{ service.subtitle }}</p>
+      <p><strong>Descripción:</strong> {{ service.description }}</p>
+      <div class="button-group">
+        <button mat-raised-button class="btn-cancel" (click)="openConfirmDialog(service.id)">Eliminar</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="services.length === 0">
+    <p>No hay servicios disponibles.</p>
+  </div>
+</div>
+
