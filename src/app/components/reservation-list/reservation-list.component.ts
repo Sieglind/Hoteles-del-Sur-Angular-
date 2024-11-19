@@ -16,10 +16,24 @@ export class ReservationListComponent implements OnInit {
     private router: Router
   ) {}
 
-  onEdit(reservation: any): void {
-    console.log('Editando reserva:', reservation);
-    this.router.navigate(['/edit-reservation', reservation.id]);
+  onEdit(reservationId: string): void {
+    console.log(reservationId);
+    this.router.navigate([`/reservations/edit/${reservationId}`]);
   }
+  
+  /*onEdit(reservationId: string | null): void {
+    if (reservationId && typeof reservationId === 'string' && reservationId.trim() !== '') {
+      this.router.navigate([`/reservations/edit/${reservationId}`]).then(() => {
+        console.log('Navegación exitosa');
+      }).catch((error) => {
+        console.error('Error al navegar:', error);
+      });
+    } else {
+      console.error('ID de reserva no válido:', reservationId);
+      alert('ID de reserva no válido');
+    }
+  }*/
+  
   ngOnInit(): void {
     this.loadReservations();
   }

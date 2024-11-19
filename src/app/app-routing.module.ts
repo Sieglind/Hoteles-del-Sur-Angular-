@@ -14,24 +14,23 @@ import { ReservationListComponent } from './components/reservation-list/reservat
 import { ReservationEditComponent } from './components/reservation-edit/reservation-edit.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: LandingPageComponent},
-  {path: 'reservations', component: MyReservationsComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  { path:'reservations/list', component: ReservationListComponent },
-  {path: 'reservations/:id', component: ReservationComponent},
-  {path: 'services', component: ServicesComponent},
-  {path: 'services/add', component: ServiceFormComponent},
-  {path: 'profile' , component: ProfileComponent},
-  {path: 'contact', component: ContactComponent},
-  {path: 'rooms/add', component: AddRoomsComponent},
-  { path: 'reservation/edit/:id', component: ReservationEditComponent }
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: LandingPageComponent },
+  { path: 'reservations', component: MyReservationsComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'reservations/list', component: ReservationListComponent },
+  { path: 'reservations/:id', component: ReservationComponent },
+  { path: 'services', component: ServicesComponent },
+  { path: 'services/add', component: ServiceFormComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'rooms/add', component: AddRoomsComponent },
+  { path: 'reservations/edit/:id', component: ReservationEditComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

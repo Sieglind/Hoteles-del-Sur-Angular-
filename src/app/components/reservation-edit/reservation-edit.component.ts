@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Reservation } from '../../models/reservation.model';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReservationService } from '../../services/reservation.service';
-import { ActivatedRoute } from '@angular/router';
+import { Reservation } from '../../models/reservation.model';
 
 @Component({
   selector: 'app-reservation-edit',
@@ -10,92 +10,87 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./reservation-edit.component.css']
 })
 export class ReservationEditComponent implements OnInit {
-  @Input() reservation!: Reservation;
-  @Output() reservationUpdated = new EventEmitter<void>();
   editForm!: FormGroup;
-  errorMessage: string | null = null;
+  reservationId: string | null = null;
 
   constructor(
-    private reservationService: ReservationService,
+    private route: ActivatedRoute,
+    private router: Router,
     private fb: FormBuilder,
-    private route: ActivatedRoute
+    private reservationService: ReservationService
   ) {}
 
   ngOnInit(): void {
-    this.editForm = this.fb.group({
-      checkInDate: [this.reservation.checkInDate, Validators.required],
-      checkOutDate: [this.reservation.checkOutDate, Validators.required]
+    // Suscribirse a los cambios en el parámetro de la ruta
+    this.route.paramMap.subscribe(params => {
+      this.reservationId = params.get('id'); 
+    
+      this.editForm = this.fb.group({
+        checkInDate: ['', Validators.required],
+        checkOutDate: ['', Validators.required],
+      });
+
+      this.loadReservationData();
     });
+  }
 
-    const reservationId = this.route.snapshot.paramMap.get('id');
-    if (reservationId) {
-      this.loadReservationDetails(reservationId); 
+  loadReservationData(): void {
+    if (this.reservationId) {
+      this.reservationService.getReservation(this.reservationId).then(reservation => {
+        if (reservation) {
+          this.editForm.setValue({
+            checkInDate: reservation.checkInDate,
+            checkOutDate: reservation.checkOutDate,
+          });
+        }
+      }).catch(error => {
+        console.error('Error al cargar la reserva:', error);
+      });
     }
   }
-  async loadReservationDetails(reservationId: string): Promise<void> {
-    try {
-      const reservation = await this.getReservation(reservationId);
-  
-      if (!reservation) {
-        this.errorMessage = 'Reserva no encontrada';
-        return;
-      }
-  
-      this.reservation = reservation;
-    } catch (error) {
-      this.errorMessage = 'Hubo un problema al cargar los detalles de la reserva';
-      console.error(error);
-    }
-  }
-  
 
-  async onSave(): Promise<void> {
-    if (this.editForm.invalid) {
-      this.errorMessage = 'Por favor, ingrese fechas válidas';
-      return;
-    }
-
-    try {
-      const updatedReservation = {
-        ...this.reservation,
+  onSave(): void {
+    if (this.editForm.valid) {
+      const updatedReservation: Partial<Reservation> = {
         checkInDate: this.editForm.value.checkInDate,
-        checkOutDate: this.editForm.value.checkOutDate
+        checkOutDate: this.editForm.value.checkOutDate,
       };
 
-      await this.reservationService.updateReservation(updatedReservation);
-      this.reservationUpdated.emit();
-    } catch (error) {
-      this.errorMessage = 'No se pudo actualizar la reserva. Intenta nuevamente';
-      console.error(error);
+      if (!this.reservationId || isNaN(Number(this.reservationId))) {
+        console.error('ID de reserva no válido:', this.reservationId);
+        alert('ID de reserva no válido');
+        return;
+      }
+
+      this.reservationService.updateReservation(this.reservationId, updatedReservation)
+        .then(() => {
+          alert('Reserva actualizada correctamente.');
+          this.router.navigate(['/reservations']);
+        })
+        .catch(error => {
+          console.error('Error al actualizar la reserva:', error);
+          alert('Hubo un error al actualizar la reserva.');
+        });
     }
   }
 
-  async onCancel(): Promise<void> {
-    if (!this.reservation.id) {
-      this.errorMessage = 'El ID de la reserva no está definido.';
+  onCancel(): void {
+    if (!this.reservationId || isNaN(Number(this.reservationId))) {
+      console.error('ID de reserva no válido:', this.reservationId);
+      alert('ID de reserva no válido');
       return;
     }
 
-    try {
-      await this.reservationService.deleteReservation(this.reservation.id);
-      this.reservationUpdated.emit();
-    } catch (error) {
-      this.errorMessage = 'No se pudo cancelar la reserva. Intente nuevamente';
-      console.error(error);
-    }
-  }
-  async getReservation(reservationId: string): Promise<Reservation | undefined> {
-    try {
-      const reservation = await this.reservationService.getReservation(reservationId);
-      if (!reservation) {
-        console.warn('Reserva no encontrada');
-        return undefined;
-      }
-      return reservation;
-    } catch (error) {
-      console.error('Error al obtener la reserva:', error);
-      return undefined;
+    if (confirm('¿Estás seguro de que deseas cancelar esta reserva?')) {
+      this.reservationService.deleteReservation(this.reservationId)
+        .then(() => {
+          alert('Reserva cancelada correctamente.');
+          this.router.navigate(['/reservations']);
+        })
+        .catch(error => {
+          console.error('Error al cancelar la reserva:', error);
+          alert('Hubo un error al cancelar la reserva.');
+        });
     }
   }
 }
-

@@ -1,7 +1,5 @@
 export class Reservation {
-  toJSON() {
-    throw new Error('Method not implemented.');
-  }
+
   id: string | undefined;
   checkInDate: Date;
   checkOutDate: Date;
