@@ -5,8 +5,8 @@
   
   .title-and-button {
     display: flex;
-    justify-content: space-between; /* Alinea el contenido en extremos opuestos */
-    align-items: center; /* Centra verticalmente */
+    justify-content: space-between; 
+    align-items: center;
     margin-bottom: 20px;
   }
   
@@ -17,7 +17,7 @@
   }
   
   .btn-add {
-    background-color: #27b52c; /* Color de fondo del botón Agregar */
+    background-color: #27b52c; 
     color: white;
     padding: 10px 20px;
     font-size: 16px;

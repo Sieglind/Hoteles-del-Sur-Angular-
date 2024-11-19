@@ -44,6 +44,15 @@
       "phone": "654-123-7890",
       "password": "",
       "role": 0
+    },
+    {
+      "id": "b188",
+      "firstName": "lara",
+      "lastName": "salas",
+      "email": "lara@example.com",
+      "phoneNumber": "2235254165",
+      "password": "123456",
+      "role": 0
     }
   ],
   "rooms": [
@@ -280,5 +289,37 @@
       "description": "Sumérgete en una experiencia única con nuestra excursión especial a Punta Tombo, uno de los mayores santuarios de pingüinos de Magallanes en el mundo. Acompáñanos en esta fascinante aventura donde podrás observar de cerca a estas carismáticas aves en su hábitat natural. Nuestro recorrido guiado por expertos en fauna marina te brindará información detallada sobre la vida de los pingüinos, su comportamiento y su entorno. Disfruta de un transporte cómodo y seguro, con paradas estratégicas para capturar las mejores fotografías de estos simpáticos habitantes de la costa. Al final del día, lleva contigo recuerdos inolvidables y un profundo respeto por la naturaleza de Chubut, Argentina. ¡Reserva tu lugar y vive la magia de Punta Tombo!",
       "imageUrl": "https://images.pexels.com/photos/21533352/pexels-photo-21533352/free-photo-of-pinguino-de-magallanes.jpeg?auto=compress&cs=tinysrgb&w=600"
     }
-  ]
+  ],
+  "companyInfo": [
+    {
+      "history": {
+        "title": "Nuestra Historia",
+        "description": [
+          "Nuestro hotel abrió sus puertas en 1990, con el objetivo de ofrecer una experiencia única a nuestros huéspedes. A lo largo de los años, hemos evolucionado y mejorado nuestras instalaciones, manteniendo siempre nuestro compromiso con la calidad y el servicio excepcional.",
+          "Con una ubicación privilegiada en el corazón de la ciudad, nuestro hotel se ha convertido en un símbolo de hospitalidad y elegancia. Desde su inauguración, hemos recibido a miles de huéspedes de todo el mundo, creando recuerdos inolvidables y experiencias únicas."
+        ]
+      },
+      "testimonials": {
+        "title": "Testimonios de Clientes",
+        "comments": [
+          {
+            "text": "Una experiencia increíble. El mejor servicio que he recibido en años. Definitivamente volveré.",
+            "author": "María Gómez"
+          },
+          {
+            "text": "Las habitaciones son impecables y el personal es muy amable. Lo recomiendo al 100%.",
+            "author": "Juan Pérez"
+          }
+        ]
+      }
+    }
+  ],
+    "companyContact": {
+      "title": "Contáctanos",
+      "phone": "+54 9 223 123 4567",
+      "email": "info@hotelesdelsur.com",
+      "hours": "Lunes a Viernes, 8:00 AM - 6:00 PM",
+      "address": "Libertad 131, 8400 Puerto Madryn, Chubut, Argentina"
+    }
+  
 }

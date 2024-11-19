@@ -20,21 +20,10 @@ export class ServicesService {
     return this.http.post<Service>(`${this.apiUrl}`, newService).toPromise();
   }
 
-  /*
-  async getService(serviceId: string): Promise<Service| undefined> {
-    return await this.getServiceById(serviceId);
-  }
-  */
-
   getService(serviceId: string): Promise<Service | undefined> {
     return this.http.get<Service | undefined>(`${this.apiUrl}/${serviceId}`).toPromise(); 
   }
   
-  /*
-  getService(serviceId: string) {
-    return this.http.get<Service>(`${this.apiUrl}/${serviceId}`).toPromise();
-  }
-  */
 
   getServiceById(serviceId: string): Promise<Service[]| undefined> {
     return this.http.get<Service[]>(`${this.apiUrl}/${serviceId}`).toPromise();

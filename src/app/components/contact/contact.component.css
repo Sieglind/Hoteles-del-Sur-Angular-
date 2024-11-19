@@ -13,8 +13,8 @@
   transition: all 0.3s ease;
 }
 .container p i {
-  margin-right: 15px;  /* Aumenté el espacio entre el ícono y el texto */
-  color: #3498db; /* Cambia el color si es necesario */
+  margin-right: 15px; 
+  color: #3498db; 
 }
 
 .card:hover {

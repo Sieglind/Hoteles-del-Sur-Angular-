@@ -15,8 +15,8 @@ export class ReservationComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private reservationService: ReservationService,
-    private router: Router // Inject the Router
-  ) {}
+    private router: Router
+  ) { }
 
   async ngOnInit() {
     let reservationId: string = this.route.snapshot.params['id'];
@@ -24,6 +24,6 @@ export class ReservationComponent implements OnInit {
   }
 
   goToReservations() {
-    this.router.navigate(['/reservations']); // Navigate to "/reservations"
+    this.router.navigate(['/reservations']);
   }
 }

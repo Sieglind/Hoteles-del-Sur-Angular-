@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {EventBusService} from '../../services/event-bus.service';
 import {PexelsService} from '../../services/pexels.service';
+import { CompanyService } from '../../services/company.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -10,13 +11,17 @@ import {PexelsService} from '../../services/pexels.service';
 export class LandingPageComponent implements OnInit {
   photoMedia: any[] = [];
   photoCount: number = 0;
+  companyInfo: any = {};
 
-  constructor(private pexelService: PexelsService, private eventBus: EventBusService) {
+  constructor(private pexelService: PexelsService, private eventBus: EventBusService, private companyService: CompanyService) {
   }
 
   showReservationForm: boolean = false;
 
   ngOnInit() {
+    this.companyService.getCompanyInfo().subscribe((data) => {
+      this.companyInfo = data[0]; 
+    });    
     this.getServiceMedia();
     this.eventBus.toggleForm$.subscribe(() => {
       this.showReservationForm = !this.showReservationForm;

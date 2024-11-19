@@ -1,16 +1,24 @@
-<div class="container py-5">
-    <div class="row justify-content-center">
-      <div class="col-md-8 col-lg-6">
-        <div class="card bg-dark text-white shadow-lg"> 
-          <div class="card-body">
-            <h2 class="card-title">Contactanos</h2>
-            <p class="card-text"><i class="fas fa-phone-alt"></i> Teléfono: +54 9 223 123 4567</p>
-            <p class="card-text"><i class="fas fa-envelope"></i> Email: <a href="mailto:info@hotelesdelsur.com" class="text-white">info&#64;hotelesdelsur.com</a></p> 
-            <p class="card-text"><i class="fas fa-clock"></i> Horario de Atención: Lunes a Viernes, 8:00 AM - 6:00 PM</p>
-            <p class="card-text"><i class="fas fa-map-marker-alt"></i> Dirección: Libertad 131, 8400 Puerto Madryn, Chubut, Argentina.</p>
-          </div>
+<div class="container py-5" *ngIf="contactInfo">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card bg-dark text-white shadow-lg">
+        <div class="card-body">
+          <h2 class="card-title">{{ contactInfo.title }}</h2>
+          <p class="card-text">
+            <i class="fas fa-phone-alt"></i> Teléfono: {{ contactInfo.phone }}
+          </p>
+          <p class="card-text">
+            <i class="fas fa-envelope"></i>
+            Email: <a [href]="'mailto:' + contactInfo.email" class="text-white">{{ contactInfo.email }}</a>
+          </p>
+          <p class="card-text">
+            <i class="fas fa-clock"></i> Horario de Atención: {{ contactInfo.hours }}
+          </p>
+          <p class="card-text">
+            <i class="fas fa-map-marker-alt"></i> Dirección: {{ contactInfo.address }}
+          </p>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

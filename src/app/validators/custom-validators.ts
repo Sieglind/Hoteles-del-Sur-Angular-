@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn} from '@angular/forms';
 import {PexelsService} from '../services/pexels.service';
 import {catchError, map, Observable, of} from 'rxjs';
-import {RoomDataService} from "../services/room-data.service";
 import {UserService} from "../services/user.service";
 import {RoomService} from '../services/room.service';
 

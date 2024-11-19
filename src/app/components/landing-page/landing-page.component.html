@@ -2,15 +2,8 @@
 <ng-template #reservationForm><app-reservation-form></app-reservation-form></ng-template>
 <ng-template #hotelHistory>
   <section class="history">
-    <h2>Nuestra Historia</h2>
-    <p class="description"> Nuestro hotel abrió sus puertas en 1990, con el objetivo de ofrecer una experiencia única a nuestros huéspedes.
-      A lo largo de los años, hemos evolucionado y mejorado nuestras instalaciones, manteniendo siempre nuestro
-      compromiso
-      con la calidad y el servicio excepcional. </p>
-    <p class="description"> Con una ubicación privilegiada en el corazón de la ciudad, nuestro
-      hotel se ha convertido en un símbolo de hospitalidad y elegancia. Desde su inauguración, hemos recibido a miles
-      de
-      huéspedes de todo el mundo, creando recuerdos inolvidables y experiencias únicas. </p>
+    <h2>{{ companyInfo.history?.title }}</h2>
+    <p class="description" *ngFor="let description of companyInfo.history?.description">{{ description }}</p>
   </section>
   <section class="photos">
     <h2>Galería de Fotos</h2>
@@ -21,15 +14,10 @@
     </div>
   </section>
   <section class="testimonials">
-    <h2>Testimonios de Clientes</h2>
-    <div class="testimonial">
-      <p>"Una experiencia increíble. El mejor servicio que he recibido en años. Definitivamente volveré."</p>
-      <p class="author">- María Gómez</p>
-    </div>
-
-    <div class="testimonial">
-      <p>"Las habitaciones son impecables y el personal es muy amable. Lo recomiendo al 100%."</p>
-      <p class="author">- Juan Pérez</p>
+    <h2>{{ companyInfo.testimonials?.title }}</h2>
+    <div class="testimonial" *ngFor="let comment of companyInfo.testimonials?.comments">
+      <p>"{{ comment.text }}"</p>
+      <p class="author">- {{ comment.author }}</p>
     </div>
   </section>
 </ng-template>

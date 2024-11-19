@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {UserDataService} from './user-data.service';
 import {Router} from '@angular/router';
 import {Role, User} from '../models/user.model';
-import {log} from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
 import {catchError, map, Observable, of} from 'rxjs';
 
 
