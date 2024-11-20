@@ -4,7 +4,10 @@
     <div class="availability-section">
       <div class="form-group">
         <label for="checkInDate">Check-In</label>
-        <input type="date" id="checkInDate" formControlName="checkInDate" required class="form-control" />
+        <input type="date" id="checkInDate" formControlName="checkInDate" required class="form-control"
+               [attr.min]="minDate"
+               [attr.max]="maxDate"
+        />
         <div *ngIf="reservationForm.get('checkInDate')?.invalid && reservationForm.get('checkInDate')?.touched"
           class="error">
           <div *ngIf="reservationForm.get('checkInDate')?.hasError('required')">
@@ -18,7 +21,10 @@
 
       <div class="form-group">
         <label for="checkOutDate">Check-Out</label>
-        <input type="date" id="checkOutDate" formControlName="checkOutDate" required class="form-control" />
+        <input type="date" id="checkOutDate" formControlName="checkOutDate" required class="form-control"
+               [attr.min]="minDate"
+               [attr.max]="maxDate"
+        />
         <div *ngIf="reservationForm.get('checkOutDate')?.invalid && reservationForm.get('checkOutDate')?.touched"
           class="error">
           <div *ngIf="reservationForm.get('checkOutDate')?.hasError('required')">

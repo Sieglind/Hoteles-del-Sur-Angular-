@@ -18,6 +18,8 @@ export class ReservationFormComponent implements OnInit {
   rooms: Room[] = [];
   selectedRoom: Room | undefined;
   reservation: Reservation | undefined;
+  minDate: string | undefined;
+  maxDate: string | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -33,7 +35,22 @@ export class ReservationFormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    const today = new Date();
+    const maxDate = new Date();
+
+    maxDate.setDate(today.getDate() + 60); // Set maxDate to 60 days from today
+
+    this.minDate = this.formatDate(today);
+    this.maxDate = this.formatDate(maxDate);
+  }
+
+  private formatDate(date: Date): string {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-based
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
 
   onCheckAvailability() {
     if (this.reservationForm.valid) {
