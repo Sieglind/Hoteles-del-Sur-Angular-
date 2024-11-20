@@ -21,17 +21,48 @@ h2 {
   color: #333;
 }
 
-.reservation-item {
+.reservation-data {
+  display: flex;
   padding: 1rem;
   border-bottom: 1px solid #ddd;
 }
 
-.reservation-item:last-child {
+.reservation-data:last-child {
   border-bottom: none;
 }
 
 .reservation-list {
-  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.reservation-card {
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  width: 50%;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
+}
+
+
+.reservation-data {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.actions{
+  align-self: flex-end;
+  padding: 1rem;
+}
+
+.actions button {
+  margin: 0.1rem;
+  border-radius: 0.5rem;
 }
 
 .error {
@@ -132,11 +163,11 @@ h2 {
 }
 
 .actions {
-  text-align: right; /* Alinea todo el contenido de .actions a la derecha */
-  display: block; /* Hace que los botones estén en bloque */
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .actions .btn {
-  width: 100%; /* Los botones siguen ocupando todo el ancho */
-  margin-bottom: 10px; /* Espaciado entre los botones */
 }

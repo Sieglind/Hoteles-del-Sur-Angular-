@@ -12,12 +12,9 @@ import { CustomValidators } from '../../validators/custom-validators';
   styleUrls: ['./reservation-edit.component.css']
 })
 export class ReservationEditComponent implements OnInit {
-  editForm!: FormGroup;
+  editForm: FormGroup; // Initialize the form group immediately
   reservationId: string | null = null;
-  roomId: string | undefined;
-  userId: string | undefined;
   reservation: Reservation | undefined;
-  reservations: any[] = [];
   errorMessage: string | undefined;
 
   constructor(
@@ -26,45 +23,65 @@ export class ReservationEditComponent implements OnInit {
     private fb: FormBuilder,
     private reservationService: ReservationService,
     private reservationDataService: ReservationDataService
-
-    
   ) {
-      this.editForm = this.fb.group({
-      id:new FormControl(this.reservationId),
+    // Initialize the form to prevent undefined errors
+    this.editForm = this.fb.group({
+      id: new FormControl({ value: '', disabled: true }),
       checkInDate: ['', [Validators.required, CustomValidators.checkInValidator()]],
       checkOutDate: ['', [Validators.required, CustomValidators.checkOutValidator()]],
-      guests: ['',[Validators.required, Validators.min(1), Validators.max(4)]],
-      roomId: new FormControl(this.roomId),
-      userId: new FormControl(this.userId)
-  });
-}
+      guests: new FormControl({ value: '', disabled: true }),
+      roomId: new FormControl({ value: '', disabled: true }),
+      userId: new FormControl({ value: '', disabled: true })
+    });
+  }
 
-async ngOnInit(): Promise<void> {
-  this.reservationId = this.route.snapshot.paramMap.get('id');
-  if (this.reservationId) {
-    try {
-      const reservation = await this.reservationService.getReservation(this.reservationId);
-      if (reservation) {
-        console.log(reservation);
-        this.roomId = reservation.roomId;
-        this.userId = reservation.userId;
-      } else {
-        console.error('Reserva no encontrada.');
+  async ngOnInit(): Promise<void> {
+    this.reservationId = this.route.snapshot.paramMap.get('id');
+    if (this.reservationId) {
+      try {
+        const reservation = await this.reservationService.getReservation(this.reservationId);
+        if (reservation) {
+          this.reservation = reservation;
+          this.populateForm(reservation); // Populate the form dynamically
+        } else {
+          console.error('Reserva no encontrada.');
+        }
+      } catch (error) {
+        console.error('Error al cargar la reserva:', error);
       }
-    } catch (error) {
-      console.error('Error al cargar la reserva:', error);
     }
   }
-}
 
-  onSubmit():void{
-    if(this.editForm.valid && this.reservationId){
-      console.log(this.editForm.value);
-      const reservationData = {...this.editForm.value, id:this.reservationId};
-      console.log(reservationData);
-      this.reservationDataService.updateReservation(reservationData).subscribe(
-        ()=> this.router.navigate(['reservations/list']),
-        (error)=> console.error('Error al actualizar la reserva: ',error)
+  private populateForm(reservation: Reservation): void {
+    const formatDate = (date: Date | string | undefined): string => {
+      if (!date) {
+        return '';
+      }
+      const parsedDate = typeof date === 'string' ? new Date(date) : date;
+      return parsedDate.toISOString().split('T')[0];
+    };
+
+    this.editForm.patchValue({
+      id: reservation.id,
+      checkInDate: formatDate(reservation.checkInDate),
+      checkOutDate: formatDate(reservation.checkOutDate),
+      guests: reservation.guests,
+      roomId: reservation.roomId,
+      userId: reservation.userId
+    });
+  }
+
+
+  onSubmit(): void {
+    if (this.editForm.valid && this.reservationId) {
+      const updatedReservation = {
+        ...this.editForm.getRawValue(), // Include disabled fields
+        id: this.reservationId
+      };
+
+      this.reservationDataService.updateReservation(updatedReservation).subscribe(
+        () => this.router.navigate(['reservations/list']),
+        (error) => console.error('Error al actualizar la reserva: ', error)
       );
     }
   }

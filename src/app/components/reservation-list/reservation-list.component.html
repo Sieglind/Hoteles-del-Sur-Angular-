@@ -1,23 +1,18 @@
 <div class="reservation-list-container">
   <h2>Lista de Reservas</h2>
-
   <div *ngIf="errorMessage" class="error">
     {{ errorMessage }}
   </div>
 
   <div *ngIf="reservations.length > 0; else noReservations" class="reservation-list">
-    <div class="reservation-item" *ngFor="let reservation of reservations">
-      <p>
-        <strong>Reserva ID:</strong> {{ reservation.id }}
-      </p>
-      <p>
-        <strong>Fecha de Ingreso:</strong> {{ reservation.checkInDate | date }}
-      </p>
-      <p>
-        <strong>Fecha de Salida:</strong> {{ reservation.checkOutDate | date }}
-      </p>
-
-      <div class="actions">
+    <div class="reservation-card" *ngFor="let reservation of reservations">
+      <div class="reservation-data">
+        <p><strong>Reserva ID:</strong> {{ reservation.id }} </p>
+        <p><strong>Habitacion:</strong> {{ reservation.roomId }}</p>
+        <p><strong>Fecha de Ingreso:</strong> {{ reservation.checkInDate | date }}</p>
+        <p><strong>Fecha de Salida:</strong> {{ reservation.checkOutDate | date }}</p>
+      </div>
+      <div class="actions" *ngIf="dateIsInvalid(reservation)">
         <button class="btn btn-primary" (click)="onEdit(reservation.id)">Editar</button>
         <button class="btn btn-danger" (click)="onCancel(reservation)">Cancelar</button>
       </div>

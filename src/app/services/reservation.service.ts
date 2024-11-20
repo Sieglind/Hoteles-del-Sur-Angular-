@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {Reservation} from '../models/reservation.model';
 import {ReservationDataService} from './reservation-data.service';
 import {UserService} from './user.service';
-import {lastValueFrom, map, Observable} from 'rxjs';
+import {map, Observable} from 'rxjs';
 import {Room} from '../models/room.model';
 import {User} from '../models/user.model';
 import {EmailService} from './email.service';
@@ -12,13 +11,11 @@ import {EmailService} from './email.service';
   providedIn: 'root'
 })
 export class ReservationService {
-  private apiUrl = 'http://localhost:3000';
 
   constructor(
     private reservationDataService: ReservationDataService,
     private userService: UserService,
-    private emailService: EmailService,
-    private http: HttpClient
+    private emailService: EmailService
   ) {
   }
 
@@ -39,10 +36,6 @@ export class ReservationService {
   }
 
   async getReservation(reservationId: string): Promise<Reservation | undefined> {
-    console.log('Checking reservationId:', reservationId);
-    if (!reservationId || isNaN(Number(reservationId))) {
-      throw new Error("Invalid reservation ID");
-    }
     return await this.reservationDataService.getReservationById(reservationId);
   }
 
@@ -73,19 +66,15 @@ export class ReservationService {
   }
 
   async deleteReservation(id: string): Promise<void> {
-    if (!id || isNaN(Number(id))) {
-      throw new Error("Invalid reservation ID");
-    }
     await this.reservationDataService.deleteReservation(id);
   }
 
-  fetchReservations(): Promise<Reservation[]> {
-    return lastValueFrom(
-      this.http.get<Reservation[]>(`${this.apiUrl}/reservations`)
-    )
-      .then(reservations =>
-        reservations?.sort((a, b) => new Date(a.checkInDate).getTime() - new Date(b.checkInDate).getTime()) || []
-      );
+  getReservations(): Observable<Reservation[]> {
+    return this.reservationDataService.getReservations().pipe(
+      map(reservations =>
+        reservations ? reservations.map(reservation => this.setLocalDate(reservation)) : []
+      )
+    );
   }
 
   setLocalDate(reservation: Reservation): Reservation {

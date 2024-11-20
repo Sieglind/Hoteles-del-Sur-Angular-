@@ -16,9 +16,6 @@ export class ReservationDataService {
   }
 
   getReservationById(reservationId: string): Promise<Reservation | undefined> {
-    if (!reservationId || isNaN(Number(reservationId))) {
-      throw new Error("Invalid reservation ID");
-    }
     return this.http.get<Reservation>(`${this.apiUrl}/${reservationId}`).toPromise();
   }
 
@@ -35,9 +32,6 @@ export class ReservationDataService {
   }
 
   deleteReservation(reservationId: string): Promise<void> {
-    if (!reservationId || isNaN(Number(reservationId))) {
-      throw new Error("Invalid reservation ID");
-    }
     return this.http.delete<void>(`${this.apiUrl}/${reservationId}`).toPromise();
   }
 }
