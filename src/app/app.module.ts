@@ -39,6 +39,7 @@ import { ViewRoomComponent } from './components/view-room/view-room.component';
 import { RoomListComponent } from './components/room-list/room-list.component';
 import { ReservationListComponent } from './components/reservation-list/reservation-list.component';
 import { ReservationEditComponent } from './components/reservation-edit/reservation-edit.component';
+import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { ReservationEditComponent } from './components/reservation-edit/reservat
     RoomListComponent,
     ReservationListComponent,
     ReservationEditComponent,
+    ErrorDialogComponent,
   ],
   imports: [
     BrowserModule,

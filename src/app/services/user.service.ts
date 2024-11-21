@@ -13,25 +13,23 @@ export class UserService {
   constructor(private userDataService: UserDataService, private router: Router) {
   }
 
-  performLogin(loginForm : {email:string , password : string}) {
-    this.userDataService.getUserByEmail(loginForm.email).subscribe(
-      user => {
-        if (user && user[0].password === loginForm.password) {
-          user[0].password = '';
-          this.router.navigateByUrl('home').then(() => {
-            sessionStorage.setItem('user', JSON.stringify(user[0]));
-          });
-        } else {
-          console.error("Incorrect email or password.");
-        }
-      },
-      error => {
-        console.error("User not found or other error:", error);
-      }
-    );
+  performLogin(loginForm: { email: string, password: string }): Observable<boolean> {
+    return this.userDataService.getUserByEmail(loginForm.email).pipe(
+      map(
+        users => {
+          if(!users){
+            throw new Error('Error desconocido al iniciar sesion');
+          } else if (users.length == 0 || users[0].email != loginForm.password){
+            throw new Error('Credenciales Invalidas');
+          }
+          users[0].password = '';
+          sessionStorage.setItem('user', JSON.stringify(users[0]));
+          return true
+        })
+    )
   }
 
-  register(userForm : any): void {
+  register(userForm: any): void {
     this.emailAlreadyExists(userForm.email).subscribe(
       result => {
         if (result) {
@@ -63,7 +61,7 @@ export class UserService {
     return user ? JSON.parse(user) : null;
   }
 
-  emailAlreadyExists(email: string) : Observable<boolean> {
+  emailAlreadyExists(email: string): Observable<boolean> {
     return this.userDataService.getUserByEmail(email).pipe(
       map(users => users.length > 0),
       catchError(() => of(false))

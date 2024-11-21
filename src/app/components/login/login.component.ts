@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../services/user.service';
+import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import {ErrorDialogComponent} from '../error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -13,15 +16,32 @@ export class LoginComponent {
 
   constructor(
     private userService: UserService,
-    private formBuilder : FormBuilder
-    ) {
+    private formBuilder: FormBuilder,
+    private router: Router,
+    public dialog: MatDialog
+  ) {
     this.loginForm = this.formBuilder.group({
-      email: ['',[Validators.required,Validators.email]],
-      password: ['',Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
     })
   }
 
   onSubmit() {
-      this.userService.performLogin(this.loginForm.value);
+    this.userService.performLogin(this.loginForm.value).subscribe(
+      result => {
+        if (result) this.router.navigate(['/']);
+      },
+      error => {
+        this.openConfirmDialog(error.message);
+      }
+    );
+  }
+
+  openConfirmDialog(errorMessage: string): void {
+    this.dialog.open(ErrorDialogComponent, {
+      width: '400px',
+      height: '200px',
+      data: errorMessage
+    });
   }
 }
